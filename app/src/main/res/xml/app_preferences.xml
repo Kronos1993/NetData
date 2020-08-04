@@ -1,0 +1,51 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:title="@string/pref_header_general">
+        <MultiSelectListPreference
+            app:icon="@drawable/ic_package_list"
+            app:defaultValue="@array/pref_actions_show_values"
+            app:entries="@array/pref_actions_show_titles"
+            app:entryValues="@array/pref_actions_show_values"
+            app:key="action_list"
+            app:title="@string/pref_title_actions_show"
+            app:summary="@string/pref_title_actions_show_hint"/>
+
+        <ListPreference
+            app:icon="@drawable/ic_default_package_list"
+            app:entries="@array/pref_default_red_titles"
+            app:entryValues="@array/pref_default_red_values"
+            app:key="red"
+            app:defaultValue="3G"
+            app:title="@string/pref_title_default_red"
+            app:summary="@string/pref_title_default_red_hint"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/pref_header_paquete_widget">
+        <ListPreference
+            app:icon="@drawable/ic_widgets"
+            app:entries="@array/pref_actions_widget_titles"
+            app:entryValues="@array/pref_default_widget_id_values"
+            app:key="widget_paquete"
+            app:defaultValue="8"
+            app:title="@string/pref_title_default_widget_package"
+            app:summary="@string/pref_title_default_widget_package_hint"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/pref_header_theme">
+        <ListPreference
+            app:icon="@drawable/ic_theme"
+            app:entries="@array/pref_default_theme_titles"
+            app:entryValues="@array/pref_default_theme_values"
+            app:key="theme"
+            app:defaultValue="MODE_NIGHT_FOLLOW_SYSTEM"
+            app:title="@string/pref_title_default_theme_mode"
+            app:summary="@string/pref_title_default_theme_mode_hint"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="@dimen/cardview_default_radius"
+    app:cardBackgroundColor="?attr/CardViewColor"
+    android:elevation="@dimen/cardview_default_elevation"
+    android:padding="@dimen/cardview_compat_inset_shadow"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+        android:weightSum="3">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="?attr/textColorBlack"
+            android:id="@+id/textViewHistorialPaqueteName"
+            android:drawablePadding="@dimen/text_15"
+            android:drawableLeft="@drawable/antena_s3g"
+            android:textSize="@dimen/text_18"
+            android:paddingTop="@dimen/text_10"
+            android:text="paquete name"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="?attr/textColorBlack"
+            android:id="@+id/textViewHistorialPaquetePrice"
+            android:textSize="@dimen/text_18"
+            android:paddingTop="@dimen/text_10"
+            android:drawablePadding="@dimen/text_15"
+            android:drawableLeft="@drawable/money"
+            android:text="paquete precio"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="?attr/textColorBlack"
+            android:id="@+id/textViewHistorialPaqueteBuyDate"
+            android:textSize="@dimen/text_18"
+            android:drawablePadding="@dimen/text_15"
+            android:drawableLeft="@drawable/ic_date"
+            android:paddingTop="@dimen/text_10"
+            android:text="fecha de compra" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

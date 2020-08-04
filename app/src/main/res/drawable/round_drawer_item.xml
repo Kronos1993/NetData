@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:right="8dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/chekedDrawerItemColor"/>
+            <corners
+                android:bottomRightRadius="@dimen/padding_50"
+                android:topRightRadius="@dimen/padding_50"/>
+        </shape>
+    </item>
+
+</layer-list>

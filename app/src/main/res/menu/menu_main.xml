@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.beesource.etecsainternet.Activities.MainActivity">
+
+    <item
+        android:id="@+id/action_sort"
+        android:orderInCategory="100"
+        android:title=""
+        android:icon="@drawable/ic_grid"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_verificar_bandas"
+        android:icon="@drawable/ic_band"
+        android:title="@string/action_verificar_bandas"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_solicitar_4G"
+        android:icon="@drawable/internet"
+        android:title="@string/action_solicitar_4G"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="never"/>
+
+</menu>

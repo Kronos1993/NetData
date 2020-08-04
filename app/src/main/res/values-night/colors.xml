@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#202020</color>
+    <color name="colorPrimaryDark">#101010</color>
+    <color name="primaryLight">#707070</color>
+    <color name="colorAccent">#607D8B</color>
+    <color name="secondaryText">#fff</color>
+    <color name="divider">#BDBDBD</color>
+    <color name="red">#ef9a9a</color>
+    <color name="icons">#FFF</color>
+    <color name="cardBackground">#202020</color>
+    <color name="backgroundColor">#101010</color>
+    <!--drawer color-->
+    <color name="chekedDrawerItemColor">#2A7F8383</color>
+    <!--dialog button-->
+    <color name="colorDialogButton">#90caf9</color>
+
+
+    <!--icono del header-->
+    <color name="globe">#80DEEA</color>
+    <color name="grid">#80CBC4</color>
+    <color name="searchBar">#e7e7e7</color>
+    <color name="http">#5A5A5A</color>
+    <color name="square">#c9f0ff</color>
+    <color name="star">#E6EE9C</color>
+    <color name="square1">#80DEEA</color>
+
+    <!--icono de recargar saldo-->
+    <color name="pack">#A5D6A7</color>
+    <color name="packShadow">#6A8F6B</color>
+    <color name="money">#FFF</color>
+    <color name="shine">#E6EE9C</color>
+    <color name="hand">#FEC9A3</color>
+    <color name="handShadow">#F7BB8F</color>
+    <color name="camisa">#80DEEA</color>
+    <color name="boton">#101010</color>
+
+    <!-- General -->
+    <color name="about_background_color">#101010</color>
+    <color name="about_item_icon_color">#fff</color>
+
+    <!-- Social -->
+    <color name="about_facebook_color">#90caf9</color>
+    <color name="about_whatsapp_color">#a5d6a7</color>
+    <color name="about_twitter_color">#81d4fa</color>
+    <color name="about_instagram_color">#80deea</color>
+    <color name="about_play_store_color">#80cbc4</color>
+    <color name="about_youtube_color">#ef9a9a</color>
+    <color name="about_github_color">#eeeeee</color>
+    <color name="telegram_color">#90CAF9</color>
+
+    <color name="colorBlack">#FFF</color>
+
+
+</resources>

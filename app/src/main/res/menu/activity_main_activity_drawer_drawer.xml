@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="nav_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/pqt_3g"
+            android:icon="@drawable/pqt_3g"
+            android:title="@string/paquetes_3G" />
+        <item
+            android:id="@+id/pqt_4g"
+            android:icon="@drawable/pqt_4g"
+            android:title="@string/paquetes_4G" />
+    </group>
+
+    <item android:title="@string/drawer_ussd">
+        <menu>
+            <item
+                android:id="@+id/check_balance"
+                android:icon="@drawable/consultar_saldo"
+                android:title="@string/consultar_saldo" />
+            <item
+                android:id="@+id/tarifa"
+                android:icon="@drawable/tarifa_por_consumo"
+                android:title="@string/tarifa_consumo" />
+            <item
+                android:id="@+id/bolsa_nauta"
+                android:icon="@drawable/bolsa_nauta"
+                android:title="@string/bolsa_nauta" />
+            <item
+                android:id="@+id/action_recargar_saldo"
+                android:icon="@drawable/money_pay_drawer"
+                android:title="@string/action_recargar_saldo"/>
+
+        </menu>
+    </item>
+
+    <item android:title="@string/drawer_util">
+        <menu>
+            <item
+                android:id="@+id/action_history"
+                android:icon="@drawable/history"
+                android:title="@string/historial" />
+
+            <!--<item
+                android:id="@+id/action_share"
+                android:icon="@drawable/ic_share"
+                android:title="@string/compartir" />-->
+        </menu>
+    </item>
+
+    <item android:title="">
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/about"
+            android:title="@string/about_us" />
+    </item>
+
+</menu>

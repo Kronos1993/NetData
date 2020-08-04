@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="app_theme">
+        <attr name="backgroundColor" format="color" />
+        <attr name="textColor" format="color" />
+        <attr name="textColorBlack" format="color" />
+        <attr name="CardViewColor" format="color" />
+        <!--<attr name="colorNavigationItem" format="color" />-->
+        <attr name="colorNavigationItemSelected" format="color" />
+        <attr name="drawableNavigationItemBackground" format="reference" />
+
+    </declare-styleable>
+
+</resources>

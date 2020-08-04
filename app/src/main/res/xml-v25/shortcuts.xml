@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:shortcutId = "history"
+        android:enabled = "true"
+        android:icon = "@drawable/history"
+        android:shortcutShortLabel = "@string/historial">
+        <intent
+            android:action = "android.intent.action.VIEW"
+            android:targetPackage = "com.kronos.netdata"
+            android:targetClass = "com.kronos.netdata.Activities.MainActivityDrawer"/>
+        <intent
+            android:action = "android.intent.action.VIEW"
+            android:targetPackage = "com.kronos.netdata"
+            android:targetClass = "com.kronos.netdata.Activities.HistorialActivity"/>
+    </shortcut>
+
+    <shortcut
+        android:shortcutId = "settings"
+        android:enabled = "true"
+        android:icon = "@drawable/ic_settings"
+        android:iconTint = "@color/divider"
+        android:shortcutShortLabel = "@string/action_settings">
+        <intent
+            android:action = "android.intent.action.VIEW"
+            android:targetPackage = "com.kronos.netdata"
+            android:targetClass = "com.kronos.netdata.Activities.MainActivityDrawer"/>
+        <intent
+            android:action = "android.intent.action.VIEW"
+            android:targetPackage = "com.kronos.netdata"
+            android:targetClass = "com.kronos.netdata.Activities.SettingsActivity"/>
+    </shortcut>
+
+</shortcuts>

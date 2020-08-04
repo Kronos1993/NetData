@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--String related to AboutPage-->
+    <string name="about_page_description" translatable="true">NetData \n¡La manera más facil de comprar tus datos!</string>
+
+    <string name="about_contact_us">Contacta con nosotros</string>
+    <string name="about_instagram">Siguénos en Instagram</string>
+    <string name="about_facebook">Da like en Facebook</string>
+    <string name="about_play_store">Valóranos en la Play Store</string>
+    <string name="about_youtube">Youtube</string>
+    <string name="about_twitter">Siguénos Twitter</string>
+    <string name="about_github">GitHub</string>
+    <string name="about_website">Visita nuestro website</string>
+    <string name="copy_right" translatable="false">Copyrights © %1$d Beesource Technologies</string>
+    <!--                                               -->
+
+</resources>

@@ -1,0 +1,111 @@
+<resources>
+    <string name="app_name">NetData</string>
+    <string name="title_activity_historial">Historial</string>
+    <string name="title_activity_main_activity_drawer">NetData</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nombre_paquete">nombre paquete</string>
+    <string name="paquete_descripcion">description</string>
+    <string name="action_paquete">Comprar</string>
+
+    <string name="version">Version: %1$s</string>
+
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancelar</string>
+
+    <string name="title_dialog_permission_request">Se necesitan los siguientes permisos:</string>
+    <string name="message_dialog_permissions_request">Es necesario otorgar permisos para acceder a los contactos y realizar llamadas.Sin estos la app no funcionará.</string>
+    <string name="permiso_no_obtenido">Permiso no obtenido</string>
+
+
+    <!-- Strings related to internet -->
+    <string name="confirm_paquete_dialog">Confirmar Compra:</string>
+    <string name="confirm_paquete_dialog_body_part1">Usted está a punto de comprar %1$s.</string>
+    <string name="confirm_paquete_dialog_body_part2"> Se le descontarán %1$d cuc de su saldo.</string>
+    <string name="confirm_bolsa_dialog_body_part1">Usted está a punto de comprar una %1$s.</string>
+
+    <string name="confirm_tarifa_consumo_dialog">Confirmar:</string>
+    <string name="confirm_tarifa_consumo_dialog_body_part">Recuerde que se le descontará saldo de su cuenta al navegar por internet. Continuar?</string>
+
+    <string name="pqt_descripcion1">Con un bono de %1$s solo para LTE.</string>
+    <string name="pqt_descripcion2">Precio %1$d cuc.</string>
+    <string name="pqt_descripcion_no_bono">Navegue por internet a un precio de %1$d cuc.</string>
+    <string name="pqt_diario_descripcion">Para gastar en 24 horas. Precio %1$d cuc.</string>
+
+    <string name="paquete_consultar">Consultar Paquete</string>
+    <string name="paquete_nacional">Bonos</string>
+    <string name="paquete_internet">Internet</string>
+
+    <string name="action_pqt_consultar">Consultar</string>
+    <string name="pqt_consultar_descripcion_vertical">Sepa cuánto tiempo y megas le\nquedan a su paquete actual.</string>
+    <string name="pqt_consultar_descripcion_horizontal">Sepa cuánto tiempo y megas le quedan a su paquete actual.</string>
+    <string name="action_recargar_saldo">Recargar saldo</string>
+    <string name="inserte_cod_recarga">Inserte un código de recarga.</string>
+    <string name="recargar">Recargar</string>
+    <string name="codigo_de_recarga">Código de recarga</string>
+    <string name="bolsa_nauta_descripcion">50 MB para disfrutar del correo.</string>
+    <string name="bolsa_nauta">Nauta</string>
+    <string name="tarifa_descripcion">Se le descontará saldo a medida que navegue.</string>
+    <string name="tarifa_consumo">Tarifa x Consumo</string>
+    <string name="activate">Activar</string>
+    <string name="desactivate">Desactivar</string>
+    <string name="select">Seleccionar</string>
+    <string name="consult">Consultar</string>
+
+    <string name="total_cuc">TOTAL GASTADO: %1$d CUC</string>
+    <string name="total_paquetes_comprados">PAQUETES COMPRADOS: %1$d</string>
+    <string name="promedio_paquetes_mensuales">PROMEDIO COMPRAS MENSUALES: %1$d</string>
+    <string name="promedio_cuc_mensuales">PROMEDIO CUC MENSUALES: %1$d CUC</string>
+    <string name="duracion_ultimo_paquete">ULTIMO PAQUETE HACE: %1$d DIAS</string>
+
+    <!-- Strings related to settings -->
+    <string name="action_solicitar_4G">Solicitar 4G</string>
+    <string name="action_verificar_bandas">Verificar bandas con ETECSA</string>
+    <string name="dialog_etecsa_solicitud_title">Info</string>
+    <string name="message_dialog_etecsa_4G">Se enviará un sms libre de costo al 2266 para solicitar el acceso a la 4G. Continuar?</string>
+    <string name="message_dialog_etecsa_imei">Se enviará un sms al 2266 con los primeros 8 dígitos del IMEI para verificar la compatibilidad del dispositivo con las bandas de ETECSA.</string>
+    <string name="no">No</string>
+    <string name="consultar_saldo">Saldo</string>
+    <string name="consultar_saldo_descripcion">Consulte cuánto saldo le queda a su línea.</string>
+    <string name="br_code">Código de barras</string>
+
+    <string name="action_capture_ussd_call">Permitir obtener los resultados de los códigos USSD</string>
+
+    <!-- Strings related to bd -->
+    <string name="error_db">Ocurrió un error en la BD.</string>
+    <string name="error_bd_create_history">Ocurrio un error en la BD.No se pudo crear el historial.</string>
+
+    <string name="month_january">Enero</string>
+    <string name="month_february">Febrero</string>
+    <string name="month_march">Marzo</string>
+    <string name="month_april">Abril</string>
+    <string name="month_may">Mayo</string>
+    <string name="month_june">Junio</string>
+    <string name="month_july">Julio</string>
+    <string name="month_august">Agosto</string>
+    <string name="month_september">Septiembre</string>
+    <string name="month_october">Octubre</string>
+    <string name="month_november">Noviembre</string>
+    <string name="month_december">Diciembre</string>
+    <string name="no_history_yet">Aún no hay historial de compras</string>
+
+    <string name="paquetes_3G">Paquetes 3G</string>
+    <string name="paquetes_4G">Paquetes 4G/LTE</string>
+    <string name="historial">Historial</string>
+    <string name="compartir">Compartir APP</string>
+    <string name="drawer_util">Útil</string>
+    <string name="drawer_ussd">USSD</string>
+    <string name="drawer_info">Info</string>
+    <string name="no_data_to_show">No se ha seleccionado ningún paquete para mostrar en esta categoría.</string>
+    <string name="about_us">Acerca de</string>
+    <string name="snack_bar_ocultar">OK</string>
+    <string name="snack_bar_retry">Reintentar</string>
+
+    <string name="db_empty">No hay historial de compras</string>
+    <string name="about_telegram">Únete a nuestro canal de Telegram</string>
+
+    <string name="last_time_check">Última consulta %1$s</string>
+
+
+</resources>

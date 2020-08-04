@@ -1,0 +1,61 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="backgroundColor">@color/backgroundColor</item>
+        <item name="textColor">@color/primaryLight</item>
+        <item name="textColorBlack">@color/secondaryText</item>
+        <item name="CardViewColor">@color/cardBackground</item>
+        <item name="colorNavigationItemSelected">?attr/textColorBlack</item>
+        <item name="drawableNavigationItemBackground">@drawable/menu_background_color_state</item>
+
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>
+        <item name="android:itemTextAppearance">@style/menuItem</item>
+
+    </style>
+
+    <style name="Widget.Custom.NavigationView" parent="Widget.Design.NavigationView">
+        <item name="itemBackground">?attr/drawableNavigationItemBackground</item>
+    </style>
+
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">sans-serif</item> <!--roboto regular-->
+        <item name="android:textSize" tools:targetApi="jelly_bean">15dp</item>
+    </style>
+
+    <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">sans-serif</item> <!--roboto regular-->
+        <item name="android:textSize" tools:targetApi="jelly_bean">20dp</item>
+    </style>
+
+    <style name="menuItem" parent="android:TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">?attr/textColorBlack</item>
+    </style>
+
+
+    <style name="ErrorText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MyApp" parent="@style/Theme.MaterialComponents.Light">
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+</resources>

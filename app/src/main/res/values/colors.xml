@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="primaryLight">#FFF</color>
+    <color name="colorAccent">#536DFE</color>
+    <color name="secondaryText">#000</color>
+    <color name="divider">#BDBDBD</color>
+    <color name="red">#cd201f</color>
+    <color name="icons">#FFF</color>
+    <color name="cardBackground">#fff</color>
+    <color name="backgroundColor">#1976D2</color>
+    <!--drawer color-->
+    <color name="chekedDrawerItemColor">#ACCBE3</color>
+    <!--dialog button-->
+    <color name="colorDialogButton">#2196F3</color>
+
+    <!--icono del header-->
+    <color name="globe">#80e0dc</color>
+    <color name="grid">#00a8b0</color>
+    <color name="searchBar">#e7e7e7</color>
+    <color name="http">#5a5a5a</color>
+    <color name="square">#c9f0ff</color>
+    <color name="star">#ffd86e</color>
+    <color name="square1">#9ae7fd</color>
+
+    <!--icono de recargar saldo-->
+    <color name="pack">#88B337</color>
+    <color name="packShadow">#6B962A</color>
+    <color name="money">#FFFFFF</color>
+    <color name="shine">#FDB62F</color>
+    <color name="hand">#FEC9A3</color>
+    <color name="handShadow">#F7BB8F</color>
+    <color name="camisa">#BBDEFB</color>
+    <color name="boton">#000</color>
+
+    <!-- General -->
+    <color name="about_background_color">#FFFFFF</color>
+    <color name="about_item_icon_color">#313131</color>
+
+    <!-- Social -->
+    <color name="about_facebook_color">#3b5998</color>
+    <color name="about_whatsapp_color">#2CB742</color>
+    <color name="about_twitter_color">#536DFE</color>
+    <color name="about_instagram_color">#3f729b</color>
+    <color name="about_play_store_color">#45BBC2</color>
+    <color name="about_youtube_color">#cd201f</color>
+    <color name="about_github_color">#333333</color>
+
+
+    <color name="colorBlack">#000000</color>
+    <color name="widget_text_color">#fff</color>
+
+    <color name="colorGridItemBackground">#2196F3</color>
+    <color name="telegram_color">#039be5</color>
+    <color name="transparent">#00FFFFFF</color>
+
+</resources>

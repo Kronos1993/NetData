@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="grid_item_text_size">11sp</dimen>
+    <dimen name="grid_view_padding">5dp</dimen>
+    <dimen name="grid_item_image_size">90dp</dimen>
+    <dimen name="text_10">10sp</dimen>
+    <dimen name="radius">2000dp</dimen>
+    <dimen name="padding_50">50dp</dimen>
+
+</resources>

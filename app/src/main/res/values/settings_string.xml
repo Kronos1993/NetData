@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Strings related to Settings -->
+    <string name="title_activity_settings">Ajustes</string>
+    <string name="action_settings">Ajustes</string>
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">Pantalla principal</string>
+    <string name="pref_header_theme">Tema</string>
+
+
+    <string name="pref_title_actions_show">Acciones a mostrar</string>
+    <string name="pref_title_actions_show_hint">Seleccione las acciones que desea mostrar en la pantalla principal</string>
+
+    <string-array name="pref_actions_show_titles">
+        <item>Paquete 400MB</item>
+        <item>Paquete 600MB</item>
+        <item>Paquete 1GB</item>
+        <item>Paquete 2.5GB</item>
+        <item>Paquete 4GB</item>
+        <item>Paquete 1GB LTE</item>
+        <item>Paquete 2.5GB  LTE</item>
+        <!--<item>Paquete 6.5GB LTE</item>-->
+        <item>Paquete 14GB LTE</item>
+        <item>Bolsa Diaria solo LTE(200MB)</item>
+    </string-array>
+    <string-array name="pref_actions_show_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <!--<item>7</item>-->
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+
+    <string name="pref_title_default_red">Paquetes por defecto</string>
+    <string name="pref_title_default_red_hint">Seleccione el tipo de red preferida para mostrar sus paquetes por defecto</string>
+
+    <string-array name="pref_default_red_titles">
+        <item>3G</item>
+        <item>4G</item>
+    </string-array>
+    <string-array name="pref_default_red_values">
+        <item>3G</item>
+        <item>4G</item>
+    </string-array>
+
+    <string name="pref_title_default_theme_mode">Temas</string>
+    <string name="pref_title_default_theme_mode_hint">Tema por defecto para la app</string>
+
+    <string-array name="pref_default_theme_titles">
+        <item>Claro</item>
+        <item>Oscuro</item>
+        <item>En ahorro de batería</item>
+        <item>Según sistema</item>
+    </string-array>
+    <string-array name="pref_default_theme_values">
+        <item>MODE_NIGHT_NO</item>
+        <item>MODE_NIGHT_YES</item>
+        <item>MODE_NIGHT_AUTO_BATTERY</item>
+        <item>MODE_NIGHT_FOLLOW_SYSTEM</item>
+    </string-array>
+
+
+    <string name="pref_title_default_widget_package">Paquete que se compra desde el widget</string>
+    <string name="pref_title_default_widget_package_hint">Seleccione el paquete que se compra desde el widget</string>
+    <string name="pref_header_paquete_widget">Paquete disponoble en el widget</string>
+    <string-array name="pref_actions_widget_titles">
+        <item>Paquete 400MB</item>
+        <item>Paquete 600MB</item>
+        <item>Paquete 1GB</item>
+        <item>Paquete 2.5GB</item>
+        <item>Paquete 4GB</item>
+        <item>Paquete 1GB LTE</item>
+        <item>Paquete 2.5GB LTE</item>
+        <item>Paquete 14GB LTE</item>
+    </string-array>
+    <string-array name="pref_default_widget_id_values">
+        <item>5</item>
+        <item>7</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>4</item>
+        <item>8</item>
+        <item>45</item>
+    </string-array>
+
+
+</resources>
