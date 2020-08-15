@@ -25,6 +25,8 @@ import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.kronos.netdata.Activities.Notifications.NetDataNotification;
+import com.kronos.netdata.Activities.Notifications.NotificationsId;
 import com.kronos.netdata.DB.Connection;
 import com.kronos.netdata.Domain.Historial;
 import com.kronos.netdata.Domain.PaqueteInternet;
@@ -99,56 +101,63 @@ public class GeneralUtility {
                         double lastConsult;*/
                         String sresponse=String.valueOf(response);
                         if(view!=null){
-                            if(sresponse.contains("Paquetes: ") && sresponse.contains("validos")){
-                                responseUssd = sresponse.substring(sresponse.indexOf("Paquetes: ")+10,sresponse.indexOf("validos"));
-                                responseUssd = responseUssd.replace("solo","");
-                                daysLeft = sresponse.substring(sresponse.indexOf("validos ")+8,sresponse.indexOf("dia"));
-                                if(view.getId()==R.id.textViewMegas){
-                                    view.setText("Paquetes: "+responseUssd);
-                                    sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
+                            if(sresponse.contains("Paquetes: ")){
+                                if(sresponse.contains("Paquetes: ") && sresponse.contains("validos")){
+                                    responseUssd = sresponse.substring(sresponse.indexOf("Paquetes: ")+10,sresponse.indexOf("validos"));
+                                    responseUssd = responseUssd.replace("solo","");
+                                    daysLeft = sresponse.substring(sresponse.indexOf("validos ")+8,sresponse.indexOf("dia"));
+                                    if(view.getId()==R.id.textViewMegas){
+                                        view.setText("Paquetes: "+responseUssd);
+                                        sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
+                                    }
+                                    if (textViewDays!=null && textViewDays.getId()==R.id.textViewDaysLeft){
+                                        textViewDays.setText("Días restantes: "+daysLeft);
+                                        sharedPreferencesSetings.edit().putString("days",daysLeft).apply();
+                                    }
+                                }else if(sresponse.contains("Paquetes: ") && sresponse.contains("no activos")){
+                                    responseUssd = sresponse.substring(sresponse.indexOf("Paquetes: ")+10,sresponse.indexOf("no activos"));
+                                    responseUssd = responseUssd.replace("solo","");
+                                    if(view.getId()==R.id.textViewMegas){
+                                        view.setText("Paquetes: "+responseUssd);
+                                        sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
+                                    }
+                                }else if (sresponse.contains("Paquetes: ") && sresponse.contains("vencen hoy")){
+                                    responseUssd = sresponse.substring(sresponse.indexOf("Paquetes: ")+10,sresponse.indexOf("vencen"));
+                                    daysLeft = "0(Adquiera otro paquete)";
+                                    if(view.getId()==R.id.textViewMegas){
+                                        view.setText("Paquetes: "+responseUssd);
+                                        sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
+                                    }
+                                    if (textViewDays!=null && textViewDays.getId()==R.id.textViewDaysLeft){
+                                        textViewDays.setText("Días restantes: "+daysLeft);
+                                        sharedPreferencesSetings.edit().putString("days",daysLeft).apply();
+                                    }
                                 }
-                                if (textViewDays!=null && textViewDays.getId()==R.id.textViewDaysLeft){
-                                    textViewDays.setText("Días restantes: "+daysLeft);
-                                    sharedPreferencesSetings.edit().putString("days",daysLeft).apply();
-                                }
-                            }else if(sresponse.contains("Paquetes: ") && sresponse.contains("no activos")){
-                                responseUssd = sresponse.substring(sresponse.indexOf("Paquetes: ")+10,sresponse.indexOf("no activos"));
-                                responseUssd = responseUssd.replace("solo","");
-                                if(view.getId()==R.id.textViewMegas){
-                                    view.setText("Paquetes: "+responseUssd);
-                                    sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
-                                }
-                            }else if (sresponse.contains("Paquetes: ") && sresponse.contains("vencen hoy")){
-                                //todo revizar eesta parte
-                                responseUssd = sresponse.substring(sresponse.indexOf("Paquetes: ")+10,sresponse.indexOf("vencen"));
-                                daysLeft = "0(Adquiera otro paquete)";
-                                if(view.getId()==R.id.textViewMegas){
-                                    view.setText("Paquetes: "+responseUssd);
-                                    sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
-                                }
-                                if (textViewDays!=null && textViewDays.getId()==R.id.textViewDaysLeft){
-                                    textViewDays.setText("Días restantes: "+daysLeft);
-                                    sharedPreferencesSetings.edit().putString("days",daysLeft).apply();
-                                }
+                                //NetDataNotification.createNotification("Internet",sresponse, NotificationsId.internet,context);
                             }
-                            else if(sresponse.contains("Bono:LTE ") && sresponse.contains("vence")){
-                                responseUssd = sresponse.substring(sresponse.indexOf("Bono: LTE ")+10,sresponse.indexOf("vence"));
-                                if(view.getId()==R.id.textViewMegasBonos){
-                                    view.setText(responseUssd);
-                                    sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
+                            else if(sresponse.contains("Bono:LTE ")){
+                                if(sresponse.contains("vence")){
+                                    responseUssd = sresponse.substring(sresponse.indexOf("Bono: LTE ")+10,sresponse.indexOf("vence"));
+                                    if(view.getId()==R.id.textViewMegasBonos){
+                                        view.setText(responseUssd);
+                                        sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
+                                    }
+                                }else{
+                                    responseUssd = sresponse.substring(sresponse.indexOf("Bono: LTE ")+10,sresponse.length());
+                                    if(view.getId()==R.id.textViewMegasBonos){
+                                        view.setText("Bono: "+ responseUssd);
+                                        sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
+                                    }
                                 }
-                            }else if(sresponse.contains("Bono:LTE ")){
-                                responseUssd = sresponse.substring(sresponse.indexOf("Bono: LTE ")+10,sresponse.length());
-                                if(view.getId()==R.id.textViewMegasBonos){
-                                    view.setText("Bono: "+ responseUssd);
-                                    sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
-                                }
-                            }else if(sresponse.contains("Datos.cu")){
+                                //NetDataNotification.createNotification("Bonos",sresponse, NotificationsId.bono,context);
+                            }
+                            else if(sresponse.contains("Datos.cu")){
                                 responseUssd = sresponse.substring(sresponse.indexOf("Datos.cu ")+9,sresponse.length());
                                 if(view.getId()==R.id.textViewMegasBonos){
                                     view.setText("Bono: "+ responseUssd);
                                     sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
                                 }
+                                //NetDataNotification.createNotification("Datos.cu",sresponse, NotificationsId.bono,context);
                             }else if(sresponse.contains("Usted no dispone de bonos activos")){
                                 if(view.getId()==R.id.textViewMegasBonos){
                                     view.setText("Sin bonos");
@@ -166,6 +175,7 @@ public class GeneralUtility {
                                 }
                             }).show();
                         }else{
+                            NetDataNotification.createNotification("Consulta realizada",sresponse, NotificationsId.bono,context);
                             Toast.makeText(context, sresponse, Toast.LENGTH_LONG).show();
                         }
                         updateWidget(context);
@@ -174,6 +184,7 @@ public class GeneralUtility {
                     @Override
                     public void onReceiveUssdResponseFailed(TelephonyManager telephonyManager, String request, int failureCode) {
                         super.onReceiveUssdResponseFailed(telephonyManager, request, failureCode);
+                        NetDataNotification.createNotification("Error",request, NotificationsId.error,context);
                         final Snackbar snackbar = Snackbar.make(view,"La consulta a fallado", BaseTransientBottomBar.LENGTH_INDEFINITE);
                         View snackView = snackbar.getView();
                         TextView snackTextView = snackView.findViewById(com.google.android.material.R.id.snackbar_text);
@@ -218,6 +229,7 @@ public class GeneralUtility {
                             }
                         }
                         Toast.makeText(context, sresponse, Toast.LENGTH_LONG).show();
+                        NetDataNotification.createNotification("Compra",sresponse, NotificationsId.paquete_buy,context);
                     }
 
                     @Override
