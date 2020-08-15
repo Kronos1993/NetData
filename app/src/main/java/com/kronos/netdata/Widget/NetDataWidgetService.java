@@ -18,6 +18,8 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import com.kronos.netdata.Activities.DialogWidgetActivity;
+import com.kronos.netdata.Activities.Notifications.NetDataNotification;
+import com.kronos.netdata.Activities.Notifications.NotificationsId;
 import com.kronos.netdata.DB.Connection;
 import com.kronos.netdata.Domain.Historial;
 import com.kronos.netdata.Domain.PaqueteInternet;
@@ -96,7 +98,7 @@ public class NetDataWidgetService extends Service {
 				getApplicationContext().startActivity(intentPaquete);
 
 			} else if (requestedAction != null && requestedAction.equals(SALDO)) {
-				makeCallUSSD(getApplicationContext(), "*222#", BONOS);
+				makeCallUSSD(getApplicationContext(), "*222#", SALDO);
 				int widgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
 				Log.i(NetDataWidgetProvider.WIDGETTAG, "Se selecciono " + SALDO + widgetId);
 
@@ -133,31 +135,39 @@ public class NetDataWidgetService extends Service {
                         double lastConsult;*/
 						String sresponse=String.valueOf(response);
 						if(action.equals(INTERNET)){
-							if(sresponse.contains("Paquetes: ") && sresponse.contains("validos")){
-								responseUssd = sresponse.substring(sresponse.indexOf("Paquetes: ")+10,sresponse.indexOf("validos"));
-								responseUssd = responseUssd.replace("solo","");
-								daysLeft = sresponse.substring(sresponse.indexOf("validos ")+8,sresponse.indexOf("dia"));
-								sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
-								sharedPreferencesSetings.edit().putString("days",daysLeft).apply();
-							}else if(sresponse.contains("Paquetes: ") && sresponse.contains("no activos")){
-								responseUssd = sresponse.substring(sresponse.indexOf("Paquetes: ")+10,sresponse.indexOf("no activos"));
-								responseUssd = responseUssd.replace("solo","");
-								sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
+							if(sresponse.contains("Paquetes: ")){
+								if(sresponse.contains("validos")){
+									responseUssd = sresponse.substring(sresponse.indexOf("Paquetes: ")+10,sresponse.indexOf("validos"));
+									responseUssd = responseUssd.replace("solo","");
+									daysLeft = sresponse.substring(sresponse.indexOf("validos ")+8,sresponse.indexOf("dia"));
+									sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
+									sharedPreferencesSetings.edit().putString("days",daysLeft).apply();
+								}else if(sresponse.contains("no activos")){
+									responseUssd = sresponse.substring(sresponse.indexOf("Paquetes: ")+10,sresponse.indexOf("no activos"));
+									responseUssd = responseUssd.replace("solo","");
+									sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
+								}
+								views.setTextViewText(R.id.text_view_paquete_widget, responseUssd);
+								Log.i(NetDataWidgetProvider.WIDGETTAG, "Internet consultado!");
+								NetDataNotification.createNotification("Internet",sresponse, NotificationsId.internet,context);
 							}
-							views.setTextViewText(R.id.text_view_paquete_widget, responseUssd);
-							Log.i(NetDataWidgetProvider.WIDGETTAG, "Internet consultado!");
 						}else if(action.equals(BONOS)){
-							if(sresponse.contains("Bono:LTE ") && sresponse.contains("vence")){
-								responseUssd = sresponse.substring(sresponse.indexOf("Bono: LTE ")+10,sresponse.indexOf("vence"));
-								sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
-							}else if(sresponse.contains("Bono:LTE ")){
-								responseUssd = sresponse.substring(sresponse.indexOf("Bono: LTE ")+10,sresponse.length());
-								sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
+							if(sresponse.contains("Bono:LTE ")){
+								if(sresponse.contains("vence")){
+									responseUssd = sresponse.substring(sresponse.indexOf("Bono: LTE ")+10,sresponse.indexOf("vence"));
+									sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
+								}else{
+									responseUssd = sresponse.substring(sresponse.indexOf("Bono: LTE ")+10,sresponse.length());
+									sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
+								}
+								NetDataNotification.createNotification("Bono LTE",sresponse, NotificationsId.bono,context);
 							}else if(sresponse.contains("Datos.cu")){
 								responseUssd = sresponse.substring(sresponse.indexOf("Datos.cu ")+9,sresponse.length());
 								sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
+								NetDataNotification.createNotification("Datos.cu",sresponse, NotificationsId.bono,context);
 							}else if(sresponse.contains("Usted no dispone de bonos activos")){
 								sharedPreferencesSetings.edit().putString("bonos","Sin bonos").apply();
+								NetDataNotification.createNotification("Sin bonos",sresponse, NotificationsId.bono,context);
 							}
 							views.setTextViewText(R.id.text_view_bono_widget, responseUssd);
 							Log.i(NetDataWidgetProvider.WIDGETTAG, "Bono consultado!");
@@ -178,6 +188,8 @@ public class NetDataWidgetService extends Service {
 									Toast.makeText(context, R.string.error_bd_create_history,Toast.LENGTH_LONG).show();
 								}
 							}
+						}else if (action.equals(SALDO)){
+							NetDataNotification.createNotification("Saldo",sresponse, NotificationsId.saldo,context);
 						}
 						Toast.makeText(context, sresponse, Toast.LENGTH_LONG).show();
 						GeneralUtility.updateWidget(getApplicationContext());
@@ -186,6 +198,7 @@ public class NetDataWidgetService extends Service {
 					@Override
 					public void onReceiveUssdResponseFailed(TelephonyManager telephonyManager, String request, int failureCode) {
 						super.onReceiveUssdResponseFailed(telephonyManager, request, failureCode);
+						NetDataNotification.createNotification("Error",request, NotificationsId.error,context);
 						Toast.makeText(context, "La consulta a fallado", Toast.LENGTH_LONG).show();
 					}
 				},new Handler());
