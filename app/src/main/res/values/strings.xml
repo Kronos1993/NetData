@@ -106,6 +106,8 @@
     <string name="about_telegram">Únete a nuestro canal de Telegram</string>
 
     <string name="last_time_check">Última consulta %1$s</string>
+    <string name="downloading">Descargando</string>
+    <string name="downloading_progess">Progreso de la descarga</string>
 
 
 </resources>
