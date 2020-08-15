@@ -7,17 +7,21 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
+
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.kronos.netdata.Activities.Fragments.ChartHistoryFragment;
 import com.kronos.netdata.Activities.Fragments.ListHistoryFragment;
 import com.kronos.netdata.DB.Connection;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import com.kronos.netdata.R;
 import com.kronos.netdata.Domain.Historial;
 import com.kronos.netdata.Util.GeneralUtility;
@@ -25,8 +29,8 @@ import com.kronos.netdata.Util.GeneralUtility;
 
 public class HistorialActivity extends AppCompatActivity {
 
-    private Context context=this;
-    private boolean showingList=false;
+    private Context context = this;
+    private boolean showingList = false;
     private ArrayList historials = new ArrayList();
 
     @Override
@@ -47,21 +51,21 @@ public class HistorialActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState, persistentState);
 
         try {
-            QueryBuilder<Historial,Integer> queryBuilder= null;
+            QueryBuilder<Historial, Integer> queryBuilder = null;
             queryBuilder = Connection.getConnection(context).getHistorialDao().queryBuilder();
             queryBuilder.orderBy(Historial.DATE_FIELD_NAME, false);
             PreparedQuery<Historial> preparedQuery = queryBuilder.prepare();
-            ArrayList historials= (ArrayList<Historial>) Connection.getConnection(context).getHistorialDao().query(preparedQuery);
-            if(historials.size()>0){
+            ArrayList historials = (ArrayList<Historial>) Connection.getConnection(context).getHistorialDao().query(preparedQuery);
+            if (historials.size() > 0) {
                 showChartFragment();
-            }else{
+            } else {
                 Toast.makeText(context, R.string.db_empty, Toast.LENGTH_SHORT).show();
                 GeneralUtility.navigate(context, MainActivityDrawer.class);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            Toast.makeText(context,R.string.error_db,Toast.LENGTH_LONG).show();
-            GeneralUtility.navigate(context,MainActivityDrawer.class);
+            Toast.makeText(context, R.string.error_db, Toast.LENGTH_LONG).show();
+            GeneralUtility.navigate(context, MainActivityDrawer.class);
         }
 
     }
@@ -70,23 +74,23 @@ public class HistorialActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         try {
-            QueryBuilder<Historial,Integer> queryBuilder= null;
+            QueryBuilder<Historial, Integer> queryBuilder = null;
             queryBuilder = Connection.getConnection(context).getHistorialDao().queryBuilder();
             queryBuilder.orderBy(Historial.DATE_FIELD_NAME, false);
             PreparedQuery<Historial> preparedQuery = queryBuilder.prepare();
-            historials= (ArrayList<Historial>) Connection.getConnection(context).getHistorialDao().query(preparedQuery);
-            if(historials.size()>0){
+            historials = (ArrayList<Historial>) Connection.getConnection(context).getHistorialDao().query(preparedQuery);
+            if (historials.size() > 0) {
                 showChartFragment();
-            }else{
+            } else {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            Toast.makeText(context,R.string.error_db,Toast.LENGTH_LONG).show();
-            GeneralUtility.navigate(context,MainActivityDrawer.class);
+            Toast.makeText(context, R.string.error_db, Toast.LENGTH_LONG).show();
+            GeneralUtility.navigate(context, MainActivityDrawer.class);
         }
     }
 
-    public void showChartFragment(){
+    public void showChartFragment() {
         showingList = false;
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ChartHistoryFragment fragmentRequest = ChartHistoryFragment.newInstance();
@@ -94,7 +98,7 @@ public class HistorialActivity extends AppCompatActivity {
         ft.commit();
     }
 
-    public void showListFragment(){
+    public void showListFragment() {
         showingList = true;
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ListHistoryFragment fragmentRequest = ListHistoryFragment.newInstance();
@@ -117,21 +121,21 @@ public class HistorialActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if(id==R.id.action_settings){
-            GeneralUtility.navigate(context,SettingsActivity.class);
-        }else if(id==R.id.action_show_list){
-            if(historials.size()>0){
-                if(showingList){
+        if (id == R.id.action_settings) {
+            GeneralUtility.navigate(context, SettingsActivity.class);
+        } else if (id == R.id.action_show_list) {
+            if (historials.size() > 0) {
+                if (showingList) {
                     showChartFragment();
-                    changeMenuIcon(showingList,item);
-                }else{
+                    changeMenuIcon(showingList, item);
+                } else {
                     showListFragment();
-                    changeMenuIcon(showingList,item);
+                    changeMenuIcon(showingList, item);
                 }
-            }else{
+            } else {
                 Toast.makeText(context, R.string.db_empty, Toast.LENGTH_SHORT).show();
             }
-        }else{
+        } else {
             onBackPressed();
         }
 
@@ -139,9 +143,9 @@ public class HistorialActivity extends AppCompatActivity {
     }
 
     private void changeMenuIcon(boolean showingList, MenuItem item) {
-        if (showingList){
+        if (showingList) {
             item.setIcon(R.drawable.ic_show_chart);
-        }else{
+        } else {
             item.setIcon(R.drawable.ic_list);
         }
     }
