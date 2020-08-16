@@ -1,0 +1,16 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:title="@string/pref_header_paquete_widget">
+        <ListPreference
+            app:icon="@drawable/ic_widgets"
+            app:entries="@array/pref_actions_widget_titles"
+            app:entryValues="@array/pref_default_widget_id_values"
+            app:key="widget_paquete"
+            app:defaultValue="8"
+            app:title="@string/pref_title_default_widget_package"
+            app:summary="@string/pref_title_default_widget_package_hint"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
