@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -11,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="4"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <LinearLayout
             android:id="@+id/widget_check_internet"
             android:layout_width="wrap_content"
@@ -128,34 +131,61 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout_hide"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimens_5"
-        android:layout_marginRight="@dimen/padding_16"
-        android:layout_marginLeft="@dimen/padding_16"
-        android:orientation="horizontal"
-        android:divider="@drawable/vertical_divider"
-        android:showDividers="middle"
-        android:weightSum="2">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_view_paquete_widget"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/action_paquete"
-            android:textColor="@color/widget_text_color"
-            android:layout_weight="1" />
+            android:layout_marginTop="@dimen/dimens_5"
+            android:layout_marginRight="@dimen/padding_16"
+            android:layout_marginLeft="@dimen/padding_16"
+            android:orientation="horizontal"
+            android:divider="@drawable/vertical_divider"
+            android:showDividers="middle"
+            android:weightSum="2">
 
-        <TextView
-            android:id="@+id/text_view_bono_widget"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/text_view_paquete_widget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_paquete"
+                android:textColor="@color/widget_text_color"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/text_view_bono_widget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimens_5"
+                android:text="@string/action_paquete"
+                android:textColor="@color/widget_text_color"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimens_5"
-            android:text="@string/action_paquete"
-            android:textColor="@color/widget_text_color"
-            android:layout_weight="1" />
+            android:layout_marginTop="@dimen/dimens_5"
+            android:layout_marginRight="@dimen/padding_16"
+            android:layout_marginLeft="@dimen/padding_16">
+
+            <TextView
+                android:id="@+id/text_view_days_left_widget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_paquete"
+                android:textColor="@color/widget_text_color"
+                android:layout_centerHorizontal="true"/>
+
+
+        </RelativeLayout>
 
     </LinearLayout>
+
 
 </LinearLayout>
 
