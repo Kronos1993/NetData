@@ -14,12 +14,13 @@
         android:roundIcon="@drawable/app_icon_redondo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.DialogWidgetActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Activities.DialogWidgetActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.AboutActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -41,8 +42,16 @@
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
+        <activity
+            android:name=".Activities.ConfigWidgetActivity"
+            android:label="@string/title_activity_widget_settings"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APP_WIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
 
-        <service android:name=".Widget.NetDataWidgetService"></service>
+        <service android:name=".Widget.NetDataWidgetService" />
 
         <receiver android:name=".Widget.NetDataWidgetProvider">
             <intent-filter>
