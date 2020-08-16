@@ -108,6 +108,17 @@
     <string name="last_time_check">Última consulta %1$s</string>
     <string name="downloading">Descargando</string>
     <string name="downloading_progess">Progreso de la descarga</string>
+    <string name="drawer_packages">Paquetes: %1$s</string>
+    <string name="drawer_bonos">Bonos: %1$s</string>
+    <string name="drawer_days_left">Días restantes: %1$s</string>
+    <string name="package_not_consult">Paquete sin consultar</string>
+    <string name="bono_not_consult">Bono sin consultar</string>
+    <string name="days_left_not_consult">Días sin consultar</string>
+    <string name="package_not_consult_msg">Aún no se ha consultado paquete.</string>
 
+    <string name="error">Ups. Ocurrio un error.</string>
+    <string name="uh_oh">Uh Oh!</string>
+    <string name="no_access_net_traffic_error">Tu dispositivo no permite el acceso al tráfico de red.</string>
+    <string name="consumed">"Consumido: "</string>
 
 </resources>

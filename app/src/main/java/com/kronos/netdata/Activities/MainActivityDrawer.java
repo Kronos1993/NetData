@@ -72,6 +72,8 @@ public class MainActivityDrawer extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         PreferenceManager.setDefaultValues(context, R.xml.app_preferences, false);
+        PreferenceManager.setDefaultValues(context, R.xml.widget_preferences, false);
+
         sharedPreferences=context.getSharedPreferences("app_preferences",Context.MODE_PRIVATE);
         sharedPreferencesSetings=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
@@ -190,18 +192,18 @@ public class MainActivityDrawer extends AppCompatActivity
                 sharedPreferencesSetings.edit().putString("bonos","0").apply();
             }
             if(!sharedPreferencesSetings.contains("last_consult")){
-                sharedPreferencesSetings.edit().putString("last_consult","Aún no se ha consultado paquete.").apply();
+                sharedPreferencesSetings.edit().putString("last_consult",getString(R.string.package_not_consult_msg)).apply();
             }
             String megas,bonos,days,consumed;
-            megas = sharedPreferencesSetings.getString("megas","Paquete sin consultar");
-            bonos = sharedPreferencesSetings.getString("bonos","Bonos sin consultar");
-            days = sharedPreferencesSetings.getString("days","Días sin consultar");
+            megas = sharedPreferencesSetings.getString("megas",getString(R.string.package_not_consult));
+            bonos = sharedPreferencesSetings.getString("bonos",getString(R.string.bono_not_consult));
+            days = sharedPreferencesSetings.getString("days",getString(R.string.days_left_not_consult));
             consumed = sharedPreferencesSetings.getString("consumes","0MB");
 
-            textViewMegasRestantes.setText("Paquetes: " + megas);
-            textViewBonos.setText("Bonos: " + bonos);
+            textViewMegasRestantes.setText(String.format(getString(R.string.drawer_packages),megas));
+            textViewBonos.setText(String.format(getString(R.string.drawer_bonos),bonos));
             textViewConsumedLastTime.setText(consumed);
-            textViewDaysLeft.setText("Días restantes: "+days);
+            textViewDaysLeft.setText(String.format(getString(R.string.drawer_days_left),days));
             textViewMegasRestantes.setVisibility(View.VISIBLE);
             textViewBonos.setVisibility(View.VISIBLE);
             textViewConsumedLastTime.setVisibility(View.GONE);
@@ -380,7 +382,7 @@ public class MainActivityDrawer extends AppCompatActivity
         if(adapterGridOrList!=null){
             gridViewActions.setAdapter(adapterGridOrList);
         }else{
-            Toast.makeText(context, "Ha ocurrido un error!!!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.error, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -389,8 +391,8 @@ public class MainActivityDrawer extends AppCompatActivity
         mStartTX = TrafficStats.getTotalTxBytes();
         if (mStartRX == TrafficStats.UNSUPPORTED || mStartTX == TrafficStats.UNSUPPORTED) {
             MaterialAlertDialogBuilder alert = new MaterialAlertDialogBuilder(this);
-            alert.setTitle("Uh Oh!");
-            alert.setMessage("Tu dispositivo no permite el acceso al tráfico de red.");
+            alert.setTitle(R.string.uh_oh);
+            alert.setMessage(R.string.no_access_net_traffic_error);
             alert.show();
         } else {
             handler.postDelayed(runner, 1000);
@@ -403,9 +405,9 @@ public class MainActivityDrawer extends AppCompatActivity
             long Mb= (long) (total*0.000001);
             if(Mb>=1024){
                 Mb=Mb/1024;
-                textViewTraficoRed.setText("Consumido: "+Mb+" GB");
+                textViewTraficoRed.setText(getString(R.string.consumed) + Mb + " GB");
             }else{
-                textViewTraficoRed.setText("Consumido: "+Mb+" MB");
+                textViewTraficoRed.setText(getString(R.string.consumed) + Mb + " MB");
             }
             handler.postDelayed(runner, 1000);
         }
@@ -537,7 +539,7 @@ public class MainActivityDrawer extends AppCompatActivity
         if(adapterGridOrList!=null){
             gridViewActions.setAdapter(adapterGridOrList);
         }else{
-            Toast.makeText(context, "Ha ocurrido un error!!!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.error, Toast.LENGTH_SHORT).show();
         }
     }
 

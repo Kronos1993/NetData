@@ -5,6 +5,9 @@
     <string name="title_activity_settings">Ajustes</string>
     <string name="action_settings">Ajustes</string>
 
+    <!-- Strings related to Widget Settings Activity -->
+    <string name="title_activity_widget_settings">Ajustes de Widget</string>
+
     <!-- Example General settings -->
     <string name="pref_header_general">Pantalla principal</string>
     <string name="pref_header_theme">Tema</string>
