@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:initialLayout="@layout/widget_layout"
-    android:initialKeyguardLayout="@layout/widget_layout"
     android:previewImage="@drawable/widget_preview"
     android:minWidth="300dp"
-    android:minHeight="48dp"
+    android:minHeight="32dp"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="600000"
-    android:widgetCategory="home_screen">
+    android:updatePeriodMillis="3600000"
+    android:widgetCategory="home_screen"
+    android:configure="com.kronos.netdata.Activities.ConfigWidgetActivity">
 
 </appwidget-provider>
