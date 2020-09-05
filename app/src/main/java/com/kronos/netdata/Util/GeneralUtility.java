@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -19,10 +18,8 @@ import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
-
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.kronos.netdata.Activities.Notifications.NetDataNotification;
@@ -32,15 +29,11 @@ import com.kronos.netdata.Domain.Historial;
 import com.kronos.netdata.Domain.PaqueteInternet;
 import com.kronos.netdata.R;
 import com.kronos.netdata.Widget.NetDataWidgetProvider;
-
 import java.io.File;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-import java.util.logging.SimpleFormatter;
 
 /**
  * Created by Marcos Octavio on 22/01/2017.
@@ -79,12 +72,12 @@ public class GeneralUtility {
         final SharedPreferences sharedPreferencesSetings = PreferenceManager.getDefaultSharedPreferences(context);
 
         Date date = Calendar.getInstance().getTime();
-        SimpleDateFormat formatter = new SimpleDateFormat();
+/*        SimpleDateFormat formatter = new SimpleDateFormat();
         formatter.applyPattern("dd/MMM/yyyy");
-        String last_consult = formatter.format(date);
-        consultDate.setText(String.format(context.getString(R.string.last_time_check),last_consult));
+        String last_consult = formatter.format(date);*/
+        consultDate.setText(R.string.last_time_check_today);
 
-        sharedPreferencesSetings.edit().putString("last_consult",last_consult).apply();
+        sharedPreferencesSetings.edit().putLong("last_consult",date.getTime()).apply();
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(context, "Permiso no diponible", Toast.LENGTH_LONG).show();
@@ -259,12 +252,13 @@ public class GeneralUtility {
                     public void onReceiveUssdResponse(TelephonyManager telephonyManager, String request, CharSequence response) {
                         super.onReceiveUssdResponse(telephonyManager, request, response);
                         String sresponse=String.valueOf(response);
-                        Toast.makeText(context, sresponse, Toast.LENGTH_LONG).show();
+                        NetDataNotification.createNotification("Acción completada",sresponse, NotificationsId.transferencia_saldo,context);
                     }
 
                     @Override
                     public void onReceiveUssdResponseFailed(TelephonyManager telephonyManager, String request, int failureCode) {
                         super.onReceiveUssdResponseFailed(telephonyManager, request, failureCode);
+                        NetDataNotification.createNotification("Error",request, NotificationsId.error,context);
                     }
                 },new Handler());
             }else{
