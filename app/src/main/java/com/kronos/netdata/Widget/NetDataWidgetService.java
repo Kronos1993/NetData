@@ -114,10 +114,10 @@ public class NetDataWidgetService extends Service {
 
 		if(action.equals(INTERNET) || action.equals(BONOS)){
 			Date date = Calendar.getInstance().getTime();
-			SimpleDateFormat formatter = new SimpleDateFormat();
+/*			SimpleDateFormat formatter = new SimpleDateFormat();
 			formatter.applyPattern("dd/MMM/yyyy");
-			String last_consult = formatter.format(date);
-			sharedPreferencesSetings.edit().putString("last_consult",last_consult).apply();
+			String last_consult = formatter.format(date);*/
+			sharedPreferencesSetings.edit().putLong("last_consult",date.getTime()).apply();
 		}
 
 		if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
