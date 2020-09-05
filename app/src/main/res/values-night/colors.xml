@@ -16,6 +16,7 @@
     <!--dialog button-->
     <color name="colorDialogButton">#90caf9</color>
 
+    <color name="credit_card">#A5D6A7</color>
 
     <!--icono del header-->
     <color name="globe">#80DEEA</color>
