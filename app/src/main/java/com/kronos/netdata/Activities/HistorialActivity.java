@@ -138,7 +138,6 @@ public class HistorialActivity extends AppCompatActivity {
         } else {
             onBackPressed();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
