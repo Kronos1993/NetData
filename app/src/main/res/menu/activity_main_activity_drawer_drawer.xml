@@ -52,6 +52,13 @@
 
     <item android:title="">
         <item
+            android:id="@+id/donate"
+            android:icon="@drawable/ic_cafe"
+            android:title="@string/donate_drawer" />
+    </item>
+
+    <item android:title="">
+        <item
             android:id="@+id/about"
             android:icon="@drawable/about"
             android:title="@string/about_us" />
