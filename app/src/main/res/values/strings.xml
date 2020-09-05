@@ -105,7 +105,9 @@
     <string name="db_empty">No hay historial de compras</string>
     <string name="about_telegram">Únete a nuestro canal de Telegram</string>
 
-    <string name="last_time_check">Última consulta %1$s</string>
+    <string name="last_time_check_days">Última consulta hace %1$d días</string>
+    <string name="last_time_check_today">Última consulta: Hoy </string>
+
     <string name="downloading">Descargando</string>
     <string name="downloading_progess">Progreso de la descarga</string>
     <string name="drawer_packages">Paquetes: %1$s</string>
@@ -120,5 +122,23 @@
     <string name="uh_oh">Uh Oh!</string>
     <string name="no_access_net_traffic_error">Tu dispositivo no permite el acceso al tráfico de red.</string>
     <string name="consumed">"Consumido: "</string>
+
+    <string name="transferir_saldo_code">*234*1*53234678*%1$s*%2$s*1#</string>
+    <string name="confirm_transferencia">Confirmar transferencia de saldo</string>
+    <string name="confirm_transferencia_dialog_body">¿Está seguro que desea realizar la transferencia? Recuerde que se le aplicará un impuesto de 30 centavos por parte de ETECSA.</string>
+    <string name="text_copied">Texto copiado al porta papeles.</string>
+    <string name="only_int_number">Solo números enteros</string>
+    <string name="transfer_key_error">Clave no puede tener menos de 4 dígitos</string>
+    <string name="number_not_valid">Número incorrecto</string>
+    <string name="empty_field">Este campo no puede estar vacío</string>
+    <string name="cafe_hint">Café</string>
+    <string name="transferir_saldo_hint">Clave para transferir saldo</string>
+    <string name="donar">Donar</string>
+    <string name="donar_msg">Apoya al desarrollador</string>
+    <string name="transfer_saldo_msg">A través de una transferencia de saldo</string>
+    <string name="transferir_cuenta_msg">A través de una transferencia a su cuenta</string>
+    <string name="account_number">9224959875135376</string>
+    <string name="copy_account_number">Copiar Número de Cuenta</string>
+    <string name="donate_drawer">Regálame un café</string>
 
 </resources>
