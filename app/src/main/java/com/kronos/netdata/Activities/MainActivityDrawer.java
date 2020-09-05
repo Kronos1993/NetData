@@ -33,6 +33,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -47,6 +48,9 @@ import com.kronos.netdata.Domain.Historial;
 import com.kronos.netdata.Util.GeneralUtility;
 import com.kronos.netdata.Domain.USSDCode;
 import com.kronos.netdata.R;
+
+import org.joda.time.DateMidnight;
+import org.joda.time.Days;
 
 
 public class MainActivityDrawer extends AppCompatActivity
@@ -180,9 +184,20 @@ public class MainActivityDrawer extends AppCompatActivity
         textViewVersion.setText(String.format(getString(R.string.version),GeneralUtility.getVersionName(context)));
         textViewNoDataGrid = (TextView) findViewById(R.id.textViewNoDataMainGrid);
 
-        String last_consult = sharedPreferencesSetings.getString("last_consult","0");
+        Long last_consult = 0l;
+        try {
+           last_consult = sharedPreferencesSetings.getLong("last_consult",0l);
+        }catch (Exception e){
 
-        textViewLastTimeConsult.setText(String.format(context.getString(R.string.last_time_check),last_consult));
+        }
+
+        int days_last_consult=Math.round(Days.daysBetween(new DateMidnight(last_consult),new DateMidnight(Calendar.getInstance().getTimeInMillis())).getDays());
+
+        if (days_last_consult == 0){
+            textViewLastTimeConsult.setText(R.string.last_time_check_today);
+        }else{
+            textViewLastTimeConsult.setText(String.format(context.getString(R.string.last_time_check_days),days_last_consult));
+        }
 
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
             if(!sharedPreferencesSetings.contains("megas")){
@@ -797,9 +812,9 @@ public class MainActivityDrawer extends AppCompatActivity
             GeneralUtility.navigate(context,AboutActivity.class);
         }else if (id == R.id.action_recargar_saldo) {
             showDialogRecargarSaldo(context);
-        }/*else if(id==R.id.action_solicitar_4G){
-            showDialog("4G");
-        }else if(id==R.id.action_verificar_bandas){
+        }else if(id==R.id.donate){
+            GeneralUtility.navigate(context,DonateActivity.class);
+        }/*else if(id==R.id.action_verificar_bandas){
             showDialog("imei");
         }else if(id==R.id.action_settings){
             GeneralUtility.navigate(context,SettingsActivity.class);
