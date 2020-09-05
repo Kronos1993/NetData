@@ -27,12 +27,8 @@ public class ConfigWidgetActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.settings_wiget, new WidgetSettingsFragment())
                 .commit();
-        setTitle(R.string.title_activity_widget_settings);
-        Toolbar toolbar =  findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        GeneralUtility.setTheme(PreferenceManager.getDefaultSharedPreferences(getBaseContext()));
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        GeneralUtility.setTheme(PreferenceManager.getDefaultSharedPreferences(getBaseContext()));
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
