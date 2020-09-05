@@ -56,10 +56,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/codigo_de_recarga"
+            app:hintTextColor="?attr/textColorBlack"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:boxBackgroundColor="@android:color/transparent"
+            app:boxBackgroundColor="?attr/CardViewColor"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintVertical_bias="0.01">
 
@@ -69,6 +70,7 @@
                 android:layout_height="match_parent"
                 android:drawableStart="@drawable/ic_attach_money"
                 android:drawablePadding="@dimen/padding_10"
+                android:textColor="?attr/textColorBlack"
                 android:inputType="number"
                 android:maxLength="16"/>
 
