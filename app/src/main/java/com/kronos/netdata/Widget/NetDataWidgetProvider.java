@@ -32,6 +32,8 @@ public class NetDataWidgetProvider extends AppWidgetProvider {
 	    int[] allWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
 
 
+	    GeneralUtility.setTheme(PreferenceManager.getDefaultSharedPreferences(context));
+
 		/*final int N = appWidgetIds.length;*/
 
 		// Perform this loop procedure for each App Widget that belongs to this provider
@@ -83,7 +85,8 @@ public class NetDataWidgetProvider extends AppWidgetProvider {
 			}else{
 				views.setViewVisibility(R.id.text_view_paquete_widget, View.GONE);
 				views.setViewVisibility(R.id.text_view_bono_widget, View.GONE);
-			}
+                views.setViewVisibility(R.id.text_view_days_left_widget,View.GONE);
+            }
 
 
 			Log.i(WIDGETTAG, "pending intent set");
