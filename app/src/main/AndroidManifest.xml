@@ -15,20 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.DialogWidgetActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.AboutActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.HistorialActivity"
-            android:label="@string/title_activity_historial"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".Activities.MainActivityDrawer"
             android:label="@string/title_activity_main_activity_drawer"
             android:theme="@style/AppTheme.NoActionBar">
@@ -43,13 +29,32 @@
                 android:resource="@xml/shortcuts" />
         </activity>
         <activity
+            android:name=".Activities.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.AboutActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.HistorialActivity"
+            android:label="@string/title_activity_historial"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Activities.ConfigWidgetActivity"
             android:label="@string/title_activity_widget_settings"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.appwidget.action.APP_WIDGET_CONFIGURE"/>
+                <action android:name="android.appwidget.action.APP_WIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".Activities.DonateActivity"
+            android:label="@string/donar_msg"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".Activities.DialogWidgetActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service android:name=".Widget.NetDataWidgetService" />
 
