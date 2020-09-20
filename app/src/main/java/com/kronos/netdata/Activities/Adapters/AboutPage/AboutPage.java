@@ -233,8 +233,8 @@ public class AboutPage {
         Element telegramElement = new Element();
         telegramElement.setTitle(title);
         telegramElement.setIconDrawable(R.drawable.about_icon_telegram);
-        telegramElement.setIconTint(R.color.telegram_color);
-        telegramElement.setIconNightTint(R.color.telegram_color);
+        telegramElement.setIconTint(R.color.about_telegram_color);
+        telegramElement.setIconNightTint(R.color.about_telegram_color);
         telegramElement.setValue(id);
 
         Intent intent = new Intent();
