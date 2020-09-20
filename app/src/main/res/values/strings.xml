@@ -1,23 +1,22 @@
 <resources>
-    <string name="app_name">NetData</string>
-    <string name="title_activity_historial">Historial</string>
-    <string name="title_activity_main_activity_drawer">NetData</string>
+    <string name="app_name" translatable="false">NetData</string>
+    <string name="title_activity_historial" translatable="false">Historial</string>
+    <string name="title_activity_main_activity_drawer" translatable="false">NetData</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nombre_paquete">nombre paquete</string>
-    <string name="paquete_descripcion">description</string>
+    <string name="nombre_paquete" translatable="false">nombre paquete</string>
+    <string name="paquete_descripcion" translatable="false">description</string>
     <string name="action_paquete">Comprar</string>
 
     <string name="version">Version: %1$s</string>
 
-    <string name="ok">Ok</string>
+    <string name="ok" translatable="false">Ok</string>
     <string name="cancel">Cancelar</string>
 
     <string name="title_dialog_permission_request">Se necesitan los siguientes permisos:</string>
-    <string name="message_dialog_permissions_request">Es necesario otorgar permisos para acceder a los contactos y realizar llamadas.Sin estos la app no funcionará.</string>
+    <string name="message_dialog_permissions_request">Es necesario otorgar permisos para realizar llamadas.Sin este la app no funcionará.</string>
     <string name="permiso_no_obtenido">Permiso no obtenido</string>
-
 
     <!-- Strings related to internet -->
     <string name="confirm_paquete_dialog">Confirmar Compra:</string>
@@ -35,7 +34,7 @@
 
     <string name="paquete_consultar">Consultar Paquete</string>
     <string name="paquete_nacional">Bonos</string>
-    <string name="paquete_internet">Internet</string>
+    <string name="paquete_internet" translatable="false">Internet</string>
 
     <string name="action_pqt_consultar">Consultar</string>
     <string name="pqt_consultar_descripcion_vertical">Sepa cuánto tiempo y megas le\nquedan a su paquete actual.</string>
@@ -45,7 +44,7 @@
     <string name="recargar">Recargar</string>
     <string name="codigo_de_recarga">Código de recarga</string>
     <string name="bolsa_nauta_descripcion">50 MB para disfrutar del correo.</string>
-    <string name="bolsa_nauta">Nauta</string>
+    <string name="bolsa_nauta" translatable="false">Nauta</string>
     <string name="tarifa_descripcion">Se le descontará saldo a medida que navegue.</string>
     <string name="tarifa_consumo">Tarifa x Consumo</string>
     <string name="activate">Activar</string>
@@ -65,7 +64,7 @@
     <string name="dialog_etecsa_solicitud_title">Info</string>
     <string name="message_dialog_etecsa_4G">Se enviará un sms libre de costo al 2266 para solicitar el acceso a la 4G. Continuar?</string>
     <string name="message_dialog_etecsa_imei">Se enviará un sms al 2266 con los primeros 8 dígitos del IMEI para verificar la compatibilidad del dispositivo con las bandas de ETECSA.</string>
-    <string name="no">No</string>
+    <string name="no" translatable="false">No</string>
     <string name="consultar_saldo">Saldo</string>
     <string name="consultar_saldo_descripcion">Consulte cuánto saldo le queda a su línea.</string>
     <string name="br_code">Código de barras</string>
@@ -92,21 +91,19 @@
 
     <string name="paquetes_3G">Paquetes 3G</string>
     <string name="paquetes_4G">Paquetes 4G/LTE</string>
-    <string name="historial">Historial</string>
+    <string name="historial" translatable="false">Historial</string>
     <string name="compartir">Compartir APP</string>
-    <string name="drawer_util">Útil</string>
+    <string name="drawer_util" translatable="false">Útil</string>
     <string name="drawer_ussd">USSD</string>
-    <string name="drawer_info">Info</string>
+    <string name="drawer_info" translatable="false">Info</string>
     <string name="no_data_to_show">No se ha seleccionado ningún paquete para mostrar en esta categoría.</string>
-    <string name="about_us">Acerca de</string>
-    <string name="snack_bar_ocultar">OK</string>
     <string name="snack_bar_retry">Reintentar</string>
 
     <string name="db_empty">No hay historial de compras</string>
-    <string name="about_telegram">Únete a nuestro canal de Telegram</string>
 
     <string name="last_time_check_days">Última consulta hace %1$d días</string>
     <string name="last_time_check_today">Última consulta: Hoy </string>
+    <string name="last_time_check_yesterday">Última consulta: Ayer </string>
 
     <string name="downloading">Descargando</string>
     <string name="downloading_progess">Progreso de la descarga</string>
@@ -115,15 +112,16 @@
     <string name="drawer_days_left">Días restantes: %1$s</string>
     <string name="package_not_consult">Paquete sin consultar</string>
     <string name="bono_not_consult">Bono sin consultar</string>
+    <string name="no_bonus">Sin bonos</string>
     <string name="days_left_not_consult">Días sin consultar</string>
     <string name="package_not_consult_msg">Aún no se ha consultado paquete.</string>
 
     <string name="error">Ups. Ocurrio un error.</string>
-    <string name="uh_oh">Uh Oh!</string>
+    <string name="uh_oh" translatable="false">Uh Oh!</string>
     <string name="no_access_net_traffic_error">Tu dispositivo no permite el acceso al tráfico de red.</string>
     <string name="consumed">"Consumido: "</string>
 
-    <string name="transferir_saldo_code">*234*1*53234678*%1$s*%2$s*1#</string>
+    <string name="transferir_saldo_code" translatable="false">*234*1*53234678*%1$s*%2$s*1#</string>
     <string name="confirm_transferencia">Confirmar transferencia de saldo</string>
     <string name="confirm_transferencia_dialog_body">¿Está seguro que desea realizar la transferencia? Recuerde que se le aplicará un impuesto de 30 centavos por parte de ETECSA.</string>
     <string name="text_copied">Texto copiado al porta papeles.</string>
@@ -140,5 +138,10 @@
     <string name="account_number">9224959875135376</string>
     <string name="copy_account_number">Copiar Número de Cuenta</string>
     <string name="donate_drawer">Regálame un café</string>
+
+    <string name="ussd_consult_completed">Consulta realizada</string>
+    <string name="ussd_consult_fail">La consulta ha fallado</string>
+    <string name="error_title" translatable="false">Error</string>
+    <string name="bono_lte_title">Bono LTE</string>
 
 </resources>

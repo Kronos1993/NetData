@@ -1,5 +1,6 @@
 package com.kronos.netdata.Activities.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.DataSetObserver;
@@ -7,10 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.kronos.netdata.Domain.Historial;
 import com.kronos.netdata.Domain.PaqueteInternet;
@@ -29,13 +36,15 @@ public class PaqueteInternetAdapterGridOrList extends BaseAdapter implements Lis
     private ArrayList<PaqueteInternet> paqueteInternets;
     private boolean list;
     private int numColumn;
+    private Activity activity;
 
-    public PaqueteInternetAdapterGridOrList(Context context, ArrayList paqueteInternets,boolean list,int numColumn)
+    public PaqueteInternetAdapterGridOrList(Activity activity,Context context, ArrayList paqueteInternets,boolean list,int numColumn)
     {
         this.context = context;
         this.paqueteInternets= paqueteInternets;
         this.list=list;
         this.numColumn=numColumn;
+        this.activity = activity;
     }
 
     @Override
@@ -150,6 +159,45 @@ public class PaqueteInternetAdapterGridOrList extends BaseAdapter implements Lis
             }
         });
         alertDialog.show();
+
+
+/*
+        String body=String.format(context.getString(R.string.confirm_paquete_dialog_body_part1),paqueteInternet.getPaquete())+String.format(context.getString(R.string.confirm_paquete_dialog_body_part2),paqueteInternet.getId());
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context, R.style.BottomSheetRoundCorners);
+        View view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_dialog_confirm, activity.findViewById(R.id.bottom_confirm_dialog));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(35, 0, 35, 300);
+        ConstraintLayout layout = view.findViewById(R.id.bottom_confirm_dialog);
+        layout.setLayoutParams(layoutParams);
+
+        TextView textViewTitle = view.findViewById(R.id.bottom_sheet_title);
+        TextView textViewBody = view.findViewById(R.id.bottom_sheet_body);
+
+        textViewTitle.setText(R.string.confirm_paquete_dialog);
+        textViewBody.setText(body);
+
+        Button ok = view.findViewById(R.id.bottom_sheet_button_ok);
+        Button cancel = view.findViewById(R.id.bottom_sheet_button_cancel);
+
+
+        if(paqueteInternet.getId()!=0){
+            ok.setOnClickListener(view1 -> {
+                historial.setId_paquete(paqueteInternet.getId());
+                historial.setPaquete(paqueteInternet.getPaquete());
+                historial.setDate(date.getTime());
+                historial.setMonth_name(getMonthName(date.getMonth()));
+                GeneralUtility.makeCallUSSD(context, USSDCode.buy(paqueteInternet.getId()),historial);
+                bottomSheetDialog.dismiss();
+            });
+            cancel.setOnClickListener(view1 -> bottomSheetDialog.dismiss());
+        }
+        bottomSheetDialog.setOnShowListener(dialogInterface -> {
+            ok.setTextColor(ContextCompat.getColor(context,R.color.colorDialogButton));
+            cancel.setTextColor(ContextCompat.getColor(context,R.color.colorDialogButton));
+        });
+
+        bottomSheetDialog.setContentView(view);
+        bottomSheetDialog.show();*/
     }
 
     private String getMonthName(int month) {
