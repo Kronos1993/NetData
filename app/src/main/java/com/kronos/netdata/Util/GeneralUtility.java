@@ -11,6 +11,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
@@ -55,10 +56,27 @@ public class GeneralUtility {
         context.startActivity(intentHome);
     }
 
+    public static void navigateWithExtra(Context context, Class clazz, Bundle extra) {
+        Intent intentHome = new Intent(context, clazz);
+        intentHome.putExtras(extra);
+        intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(intentHome);
+    }
+
     public static void navigateFlagNewTask(Context context, Class clazz) {
         Intent intentHome = new Intent(context, clazz);
         intentHome.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intentHome);
+    }
+
+    public static void rateApp(Context context, View view) {
+        try{
+            context.startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("market://id?" + context.getPackageName())));
+        }catch (Exception e){
+            context.startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/sttore/apps/details?id=" + context.getPackageName())));
+        }
     }
 
     public static void sendSMS(Context context, String number, String sms) {
@@ -80,7 +98,7 @@ public class GeneralUtility {
         sharedPreferencesSetings.edit().putLong("last_consult",date.getTime()).apply();
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(context, "Permiso no diponible", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.permiso_no_obtenido, Toast.LENGTH_LONG).show();
         } else {
             if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
                 TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -100,29 +118,29 @@ public class GeneralUtility {
                                     responseUssd = responseUssd.replace("solo","");
                                     daysLeft = sresponse.substring(sresponse.indexOf("validos ")+8,sresponse.indexOf("dia"));
                                     if(view.getId()==R.id.textViewMegas){
-                                        view.setText("Paquetes: "+responseUssd);
+                                        view.setText(String.format(context.getString(R.string.drawer_packages),responseUssd));
                                         sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
                                     }
                                     if (textViewDays!=null && textViewDays.getId()==R.id.textViewDaysLeft){
-                                        textViewDays.setText("Días restantes: "+daysLeft);
+                                        textViewDays.setText(String.format(context.getString(R.string.drawer_days_left),daysLeft));
                                         sharedPreferencesSetings.edit().putString("days",daysLeft).apply();
                                     }
                                 }else if(sresponse.contains("Paquetes: ") && sresponse.contains("no activos")){
                                     responseUssd = sresponse.substring(sresponse.indexOf("Paquetes: ")+10,sresponse.indexOf("no activos"));
                                     responseUssd = responseUssd.replace("solo","");
                                     if(view.getId()==R.id.textViewMegas){
-                                        view.setText("Paquetes: "+responseUssd);
+                                        view.setText(String.format(context.getString(R.string.drawer_packages),responseUssd));
                                         sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
                                     }
                                 }else if (sresponse.contains("Paquetes: ") && sresponse.contains("vencen hoy")){
                                     responseUssd = sresponse.substring(sresponse.indexOf("Paquetes: ")+10,sresponse.indexOf("vencen"));
                                     daysLeft = "0(Adquiera otro paquete)";
                                     if(view.getId()==R.id.textViewMegas){
-                                        view.setText("Paquetes: "+responseUssd);
+                                        view.setText(String.format(context.getString(R.string.drawer_packages),responseUssd));
                                         sharedPreferencesSetings.edit().putString("megas",responseUssd).apply();
                                     }
                                     if (textViewDays!=null && textViewDays.getId()==R.id.textViewDaysLeft){
-                                        textViewDays.setText("Días restantes: "+daysLeft);
+                                        textViewDays.setText(String.format(context.getString(R.string.drawer_days_left),daysLeft));
                                         sharedPreferencesSetings.edit().putString("days",daysLeft).apply();
                                     }
                                 }
@@ -138,7 +156,7 @@ public class GeneralUtility {
                                 }else{
                                     responseUssd = sresponse.substring(sresponse.indexOf("Bono: LTE ")+10,sresponse.length());
                                     if(view.getId()==R.id.textViewMegasBonos){
-                                        view.setText("Bono: "+ responseUssd);
+                                        view.setText(String.format(context.getString(R.string.drawer_bonos),responseUssd));
                                         sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
                                     }
                                 }
@@ -147,13 +165,13 @@ public class GeneralUtility {
                             else if(sresponse.contains("Datos.cu")){
                                 responseUssd = sresponse.substring(sresponse.indexOf("Datos.cu ")+9,sresponse.length());
                                 if(view.getId()==R.id.textViewMegasBonos){
-                                    view.setText("Bono: "+ responseUssd);
+                                    view.setText(String.format(context.getString(R.string.drawer_bonos),responseUssd));
                                     sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
                                 }
                                 //NetDataNotification.createNotification("Datos.cu",sresponse, NotificationsId.bono,context);
                             }else if(sresponse.contains("Usted no dispone de bonos activos")){
                                 if(view.getId()==R.id.textViewMegasBonos){
-                                    view.setText("Sin bonos");
+                                    view.setText(R.string.no_bonus);
                                     sharedPreferencesSetings.edit().putString("bonos","Sin bonos").apply();
                                 }
                             }
@@ -161,14 +179,14 @@ public class GeneralUtility {
                             View snackView = snackbar.getView();
                             TextView snackTextView = snackView.findViewById(com.google.android.material.R.id.snackbar_text);
                             snackTextView.setMaxLines(4);
-                            snackbar.setAction(R.string.snack_bar_ocultar, new View.OnClickListener() {
+                            snackbar.setAction(R.string.ok, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     snackbar.dismiss();
                                 }
                             }).show();
                         }else{
-                            NetDataNotification.createNotification("Consulta realizada",sresponse, NotificationsId.bono,context);
+                            NetDataNotification.createNotification(context.getString(R.string.ussd_consult_completed),sresponse, NotificationsId.bono,context);
                             Toast.makeText(context, sresponse, Toast.LENGTH_LONG).show();
                         }
                         updateWidget(context);
@@ -177,8 +195,8 @@ public class GeneralUtility {
                     @Override
                     public void onReceiveUssdResponseFailed(TelephonyManager telephonyManager, String request, int failureCode) {
                         super.onReceiveUssdResponseFailed(telephonyManager, request, failureCode);
-                        NetDataNotification.createNotification("Error",request, NotificationsId.error,context);
-                        final Snackbar snackbar = Snackbar.make(view,"La consulta a fallado", BaseTransientBottomBar.LENGTH_INDEFINITE);
+                        NetDataNotification.createNotification(context.getString(R.string.error_title),request, NotificationsId.error,context);
+                        final Snackbar snackbar = Snackbar.make(view, R.string.ussd_consult_fail, BaseTransientBottomBar.LENGTH_INDEFINITE);
                         View snackView = snackbar.getView();
                         TextView snackTextView = snackView.findViewById(com.google.android.material.R.id.snackbar_text);
                         snackTextView.setMaxLines(4);

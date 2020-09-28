@@ -149,7 +149,7 @@ public class NetDataWidgetService extends Service {
 								}
 								views.setTextViewText(R.id.text_view_paquete_widget, responseUssd);
 								Log.i(NetDataWidgetProvider.WIDGETTAG, "Internet consultado!");
-								NetDataNotification.createNotification("Internet",sresponse, NotificationsId.internet,context);
+								NetDataNotification.createNotification(getString(R.string.paquete_internet),sresponse, NotificationsId.internet,context);
 							}
 						}else if(action.equals(BONOS)){
 							if(sresponse.contains("Bono:LTE ")){
@@ -160,14 +160,14 @@ public class NetDataWidgetService extends Service {
 									responseUssd = sresponse.substring(sresponse.indexOf("Bono: LTE ")+10,sresponse.length());
 									sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
 								}
-								NetDataNotification.createNotification("Bono LTE",sresponse, NotificationsId.bono,context);
+								NetDataNotification.createNotification(getString(R.string.bono_lte_title),sresponse, NotificationsId.bono,context);
 							}else if(sresponse.contains("Datos.cu")){
 								responseUssd = sresponse.substring(sresponse.indexOf("Datos.cu ")+9,sresponse.length());
 								sharedPreferencesSetings.edit().putString("bonos",responseUssd).apply();
 								NetDataNotification.createNotification("Datos.cu",sresponse, NotificationsId.bono,context);
 							}else if(sresponse.contains("Usted no dispone de bonos activos")){
 								sharedPreferencesSetings.edit().putString("bonos","Sin bonos").apply();
-								NetDataNotification.createNotification("Sin bonos",sresponse, NotificationsId.bono,context);
+								NetDataNotification.createNotification(getString(R.string.no_bonus),sresponse, NotificationsId.bono,context);
 							}
 							views.setTextViewText(R.id.text_view_bono_widget, responseUssd);
 							Log.i(NetDataWidgetProvider.WIDGETTAG, "Bono consultado!");
@@ -189,7 +189,7 @@ public class NetDataWidgetService extends Service {
 								}
 							}
 						}else if (action.equals(SALDO)){
-							NetDataNotification.createNotification("Saldo",sresponse, NotificationsId.saldo,context);
+							NetDataNotification.createNotification(getString(R.string.consultar_saldo),sresponse, NotificationsId.saldo,context);
 						}
 						Toast.makeText(context, sresponse, Toast.LENGTH_LONG).show();
 						GeneralUtility.updateWidget(getApplicationContext());

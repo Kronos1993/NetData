@@ -40,13 +40,13 @@ public class NetDataWidgetProvider extends AppWidgetProvider {
 		for (int i=0; i<allWidgetIds.length; i++) {
 			int appWidgetId = allWidgetIds[i];
 
-			Bundle bundle = appWidgetManager.getAppWidgetOptions(appWidgetId);
 
 			Log.i(WIDGETTAG, "updating widget[id] " + appWidgetId);
 
-		    RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+			RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 
-		    updateWidgetSize(bundle,views);
+			Bundle bundle = appWidgetManager.getAppWidgetOptions(appWidgetId);
+			updateWidgetSize(bundle,views);
 
 		    Intent intentInternet = new Intent(context, NetDataWidgetService.class);
 			intentInternet.setAction(NetDataWidgetService.INTERNET);
