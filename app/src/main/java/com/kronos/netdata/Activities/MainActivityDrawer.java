@@ -28,11 +28,15 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -49,7 +53,6 @@ import java.util.Set;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.kronos.netdata.Activities.Adapters.PaqueteInternetAdapterGridOrList;
-import com.kronos.netdata.Activities.GridViews.GridViewWithHeaderAndFooter;
 import com.kronos.netdata.Domain.PaqueteInternet;
 import com.kronos.netdata.Domain.Historial;
 import com.kronos.netdata.Util.GeneralUtility;
@@ -68,7 +71,7 @@ public class MainActivityDrawer extends AppCompatActivity
     private ArrayList<PaqueteInternet> actionList = new ArrayList<>();
     private ArrayList<PaqueteInternet> actionList4G = new ArrayList<>();
     private PaqueteInternetAdapterGridOrList adapterGridOrList;
-    private GridViewWithHeaderAndFooter gridViewActions;
+    private RecyclerView gridViewActions;
     private Context context = this;
     private SharedPreferences sharedPreferences;
     private SharedPreferences sharedPreferencesSetings;
@@ -383,7 +386,8 @@ public class MainActivityDrawer extends AppCompatActivity
             actionList4G.add(pqt200MB4G);
         }
 
-        gridViewActions = (GridViewWithHeaderAndFooter) findViewById(R.id.gridview);
+        gridViewActions = (RecyclerView) findViewById(R.id.gridview);
+        gridViewActions.setHasFixedSize(false);
         set3Gor4G();
         if (sharedPreferences.getBoolean("list", true)) {
             if (is3GOr4G(navigationView.getMenu())) {
@@ -391,8 +395,9 @@ public class MainActivityDrawer extends AppCompatActivity
                     gridViewActions.setVisibility(View.GONE);
                     textViewNoDataGrid.setVisibility(View.VISIBLE);
                 } else {
-                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(this, context, actionList, true, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
-                    gridViewActions.setNumColumns(1);
+                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(context, true);
+                    adapterGridOrList.submitList(actionList);
+                    gridViewActions.setLayoutManager(new LinearLayoutManager(context));
                     gridViewActions.setVisibility(View.VISIBLE);
                     textViewNoDataGrid.setVisibility(View.GONE);
                 }
@@ -401,8 +406,9 @@ public class MainActivityDrawer extends AppCompatActivity
                     gridViewActions.setVisibility(View.GONE);
                     textViewNoDataGrid.setVisibility(View.VISIBLE);
                 } else {
-                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(this, context, actionList4G, true, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
-                    gridViewActions.setNumColumns(1);
+                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(context, true);
+                    adapterGridOrList.submitList(actionList4G);
+                    gridViewActions.setLayoutManager(new LinearLayoutManager(context));
                     gridViewActions.setVisibility(View.VISIBLE);
                     textViewNoDataGrid.setVisibility(View.GONE);
                 }
@@ -413,8 +419,9 @@ public class MainActivityDrawer extends AppCompatActivity
                     gridViewActions.setVisibility(View.GONE);
                     textViewNoDataGrid.setVisibility(View.VISIBLE);
                 } else {
-                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(this, context, actionList, false, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
-                    gridViewActions.setNumColumns(Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
+                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(context, false);
+                    adapterGridOrList.submitList(actionList);
+                    gridViewActions.setLayoutManager(new GridLayoutManager(context, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2"))));
                     gridViewActions.setVisibility(View.VISIBLE);
                     textViewNoDataGrid.setVisibility(View.GONE);
                 }
@@ -423,18 +430,22 @@ public class MainActivityDrawer extends AppCompatActivity
                     gridViewActions.setVisibility(View.GONE);
                     textViewNoDataGrid.setVisibility(View.VISIBLE);
                 } else {
-                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(this, context, actionList4G, false, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
-                    gridViewActions.setNumColumns(Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
+                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(context, false);
+                    adapterGridOrList.submitList(actionList4G);
+                    gridViewActions.setLayoutManager(new GridLayoutManager(context, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2"))));
                     gridViewActions.setVisibility(View.VISIBLE);
                     textViewNoDataGrid.setVisibility(View.GONE);
                 }
             }
         }
-        if (gridViewActions.getHeaderViewCount() == 0) {
-            gridViewActions.addHeaderView(initGridHeader(context));
-        }
         if (adapterGridOrList != null) {
             gridViewActions.setAdapter(adapterGridOrList);
+            adapterGridOrList.setOnItemClickListener(new PaqueteInternetAdapterGridOrList.OnItemClickListener() {
+                @Override
+                public void onItemClick(PaqueteInternet paqueteInternet) {
+                    createConfirmDialog(paqueteInternet);
+                }
+            });
         } else {
             Toast.makeText(context, R.string.error, Toast.LENGTH_SHORT).show();
         }
@@ -480,13 +491,12 @@ public class MainActivityDrawer extends AppCompatActivity
     }
 
     public View initGridHeader(final Context context) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.grid_header, null);
+        CardView cardViewConsult = findViewById(R.id.cardViewConsult);
 
-        final ImageView imageView = (ImageView) v.findViewById(R.id.imageViewPaquete);
-        TextView nombrePlan = (TextView) v.findViewById(R.id.label_paquete_name);
-        TextView internet = (TextView) v.findViewById(R.id.internet);
-        TextView bono = (TextView) v.findViewById(R.id.bono);
+        final ImageView imageView = (ImageView) cardViewConsult.findViewById(R.id.imageViewPaquete);
+        TextView nombrePlan = (TextView) cardViewConsult.findViewById(R.id.label_paquete_name);
+        TextView internet = (TextView) cardViewConsult.findViewById(R.id.internet);
+        TextView bono = (TextView) cardViewConsult.findViewById(R.id.bono);
 
         imageView.setImageResource(R.drawable.internet_card);
         nombrePlan.setText(R.string.paquete_consultar);
@@ -505,14 +515,14 @@ public class MainActivityDrawer extends AppCompatActivity
             imageView.startAnimation(animation);
         });
 
-        v.setOnClickListener(new View.OnClickListener() {
+        cardViewConsult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createConsultDialog(context, imageView);
             }
         });
 
-        return v;
+        return cardViewConsult;
     }
 
     private void showDialog(String s) {
@@ -603,8 +613,10 @@ public class MainActivityDrawer extends AppCompatActivity
                     gridViewActions.setVisibility(View.GONE);
                     textViewNoDataGrid.setVisibility(View.VISIBLE);
                 } else {
-                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(this, context, actionList, true, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
-                    gridViewActions.setNumColumns(1);
+                    adapterGridOrList.setList(true);
+                    adapterGridOrList.submitList(actionList);
+                    gridViewActions.setLayoutManager(new LinearLayoutManager(context));
+                    adapterGridOrList.notifyDataSetChanged();
                     gridViewActions.setVisibility(View.VISIBLE);
                     textViewNoDataGrid.setVisibility(View.GONE);
                 }
@@ -613,8 +625,10 @@ public class MainActivityDrawer extends AppCompatActivity
                     gridViewActions.setVisibility(View.GONE);
                     textViewNoDataGrid.setVisibility(View.VISIBLE);
                 } else {
-                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(this, context, actionList4G, true, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
-                    gridViewActions.setNumColumns(1);
+                    adapterGridOrList.setList(true);
+                    adapterGridOrList.submitList(actionList4G);
+                    gridViewActions.setLayoutManager(new LinearLayoutManager(context));
+                    adapterGridOrList.notifyDataSetChanged();
                     gridViewActions.setVisibility(View.VISIBLE);
                     textViewNoDataGrid.setVisibility(View.GONE);
                 }
@@ -625,8 +639,10 @@ public class MainActivityDrawer extends AppCompatActivity
                     gridViewActions.setVisibility(View.GONE);
                     textViewNoDataGrid.setVisibility(View.VISIBLE);
                 } else {
-                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(this, context, actionList, false, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
-                    gridViewActions.setNumColumns(Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
+                    adapterGridOrList.setList(false);
+                    adapterGridOrList.submitList(actionList);
+                    gridViewActions.setLayoutManager(new GridLayoutManager(context, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2"))));
+                    adapterGridOrList.notifyDataSetChanged();
                     gridViewActions.setVisibility(View.VISIBLE);
                     textViewNoDataGrid.setVisibility(View.GONE);
                 }
@@ -635,8 +651,10 @@ public class MainActivityDrawer extends AppCompatActivity
                     gridViewActions.setVisibility(View.GONE);
                     textViewNoDataGrid.setVisibility(View.VISIBLE);
                 } else {
-                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(this, context, actionList4G, false, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
-                    gridViewActions.setNumColumns(Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
+                    adapterGridOrList.setList(false);
+                    adapterGridOrList.submitList(actionList4G);
+                    gridViewActions.setLayoutManager(new GridLayoutManager(context, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2"))));
+                    adapterGridOrList.notifyDataSetChanged();
                     gridViewActions.setVisibility(View.VISIBLE);
                     textViewNoDataGrid.setVisibility(View.GONE);
                 }
@@ -647,6 +665,77 @@ public class MainActivityDrawer extends AppCompatActivity
         } else {
             Toast.makeText(context, R.string.error, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void createConfirmDialog(final PaqueteInternet paqueteInternet) {
+        final Date date = new Date();
+        final Historial historial = new Historial();
+        final MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
+        builder.setTitle(R.string.confirm_paquete_dialog);
+        String body = String.format(context.getString(R.string.confirm_paquete_dialog_body_part1), paqueteInternet.getPaquete()) + String.format(context.getString(R.string.confirm_paquete_dialog_body_part2), paqueteInternet.getId());
+        builder.setMessage(body);
+
+        if (paqueteInternet.getId() != 0) {
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    historial.setId_paquete(paqueteInternet.getId());
+                    historial.setPaquete(paqueteInternet.getPaquete());
+                    historial.setDate(date.getTime());
+                    historial.setMonth_name(GeneralUtility.getMonthName(date.getMonth(), context));
+                    GeneralUtility.makeCallUSSD(context, USSDCode.buy(paqueteInternet.getId()), historial);
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+        }
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(context, R.color.colorDialogButton));
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(context, R.color.colorDialogButton));
+            }
+        });
+        alertDialog.show();
+
+
+/*
+        String body=String.format(context.getString(R.string.confirm_paquete_dialog_body_part1),paqueteInternet.getPaquete())+String.format(context.getString(R.string.confirm_paquete_dialog_body_part2),paqueteInternet.getId());
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context, R.style.BottomSheetRoundCorners);
+        View view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_dialog_confirm, activity.findViewById(R.id.bottom_confirm_dialog));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(35, 0, 35, 300);
+        ConstraintLayout layout = view.findViewById(R.id.bottom_confirm_dialog);
+        layout.setLayoutParams(layoutParams);
+        TextView textViewTitle = view.findViewById(R.id.bottom_sheet_title);
+        TextView textViewBody = view.findViewById(R.id.bottom_sheet_body);
+        textViewTitle.setText(R.string.confirm_paquete_dialog);
+        textViewBody.setText(body);
+        Button ok = view.findViewById(R.id.bottom_sheet_button_ok);
+        Button cancel = view.findViewById(R.id.bottom_sheet_button_cancel);
+        if(paqueteInternet.getId()!=0){
+            ok.setOnClickListener(view1 -> {
+                historial.setId_paquete(paqueteInternet.getId());
+                historial.setPaquete(paqueteInternet.getPaquete());
+                historial.setDate(date.getTime());
+                historial.setMonth_name(getMonthName(date.getMonth()));
+                GeneralUtility.makeCallUSSD(context, USSDCode.buy(paqueteInternet.getId()),historial);
+                bottomSheetDialog.dismiss();
+            });
+            cancel.setOnClickListener(view1 -> bottomSheetDialog.dismiss());
+        }
+        bottomSheetDialog.setOnShowListener(dialogInterface -> {
+            ok.setTextColor(ContextCompat.getColor(context,R.color.colorDialogButton));
+            cancel.setTextColor(ContextCompat.getColor(context,R.color.colorDialogButton));
+        });
+        bottomSheetDialog.setContentView(view);
+        bottomSheetDialog.show();*/
     }
 
     private boolean is3GOr4G(Menu menu) {
@@ -960,16 +1049,16 @@ public class MainActivityDrawer extends AppCompatActivity
         if (pqt.equals("3")) {
             if (!actionList.isEmpty()) {
                 if (sharedPreferences.getBoolean("list", true)) {
-                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(this, context, actionList, true, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
-                    gridViewActions.setNumColumns(1);
+                    adapterGridOrList.setList(true);
+                    adapterGridOrList.submitList(actionList);
+                    gridViewActions.setLayoutManager(new LinearLayoutManager(context));
+                    adapterGridOrList.notifyDataSetChanged();
                 } else {
-                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(this, context, actionList, false, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
-                    gridViewActions.setNumColumns(Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
+                    adapterGridOrList.setList(false);
+                    adapterGridOrList.submitList(actionList);
+                    gridViewActions.setLayoutManager(new GridLayoutManager(context, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2"))));
+                    adapterGridOrList.notifyDataSetChanged();
                 }
-                if (gridViewActions.getHeaderViewCount() == 0) {
-                    gridViewActions.addHeaderView(initGridHeader(context));
-                }
-                gridViewActions.setAdapter(adapterGridOrList);
                 gridViewActions.setVisibility(View.VISIBLE);
                 textViewNoDataGrid.setVisibility(View.GONE);
             } else {
@@ -979,16 +1068,16 @@ public class MainActivityDrawer extends AppCompatActivity
         } else {
             if (!actionList4G.isEmpty()) {
                 if (sharedPreferences.getBoolean("list", true)) {
-                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(this, context, actionList4G, true, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
-                    gridViewActions.setNumColumns(1);
+                    adapterGridOrList.setList(true);
+                    adapterGridOrList.submitList(actionList4G);
+                    gridViewActions.setLayoutManager(new LinearLayoutManager(context));
+                    adapterGridOrList.notifyDataSetChanged();
                 } else {
-                    adapterGridOrList = new PaqueteInternetAdapterGridOrList(this, context, actionList4G, false, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
-                    gridViewActions.setNumColumns(Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2")));
+                    adapterGridOrList.setList(false);
+                    adapterGridOrList.submitList(actionList4G);
+                    gridViewActions.setLayoutManager(new GridLayoutManager(context, Integer.parseInt(sharedPreferencesSetings.getString("row_list", "2"))));
+                    adapterGridOrList.notifyDataSetChanged();
                 }
-                if (gridViewActions.getHeaderViewCount() == 0) {
-                    gridViewActions.addHeaderView(initGridHeader(context));
-                }
-                gridViewActions.setAdapter(adapterGridOrList);
                 gridViewActions.setVisibility(View.VISIBLE);
                 textViewNoDataGrid.setVisibility(View.GONE);
             } else {
