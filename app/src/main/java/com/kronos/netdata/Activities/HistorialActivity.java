@@ -30,7 +30,7 @@ import com.kronos.netdata.Util.GeneralUtility;
 public class HistorialActivity extends AppCompatActivity {
 
     private Context context = this;
-    private boolean showingList = false;
+    private boolean showingList = true;
     private ArrayList historials = new ArrayList();
 
     @Override
@@ -57,7 +57,11 @@ public class HistorialActivity extends AppCompatActivity {
             PreparedQuery<Historial> preparedQuery = queryBuilder.prepare();
             ArrayList historials = (ArrayList<Historial>) Connection.getConnection(context).getHistorialDao().query(preparedQuery);
             if (historials.size() > 0) {
-                showChartFragment();
+                if (showingList) {
+                    showChartFragment();
+                } else {
+                    showListFragment();
+                }
             } else {
                 Toast.makeText(context, R.string.db_empty, Toast.LENGTH_SHORT).show();
                 GeneralUtility.navigate(context, MainActivityDrawer.class);
@@ -80,8 +84,11 @@ public class HistorialActivity extends AppCompatActivity {
             PreparedQuery<Historial> preparedQuery = queryBuilder.prepare();
             historials = (ArrayList<Historial>) Connection.getConnection(context).getHistorialDao().query(preparedQuery);
             if (historials.size() > 0) {
-                showChartFragment();
-            } else {
+                if (showingList) {
+                    showChartFragment();
+                } else {
+                    showListFragment();
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

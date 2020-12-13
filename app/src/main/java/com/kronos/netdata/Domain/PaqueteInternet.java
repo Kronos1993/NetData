@@ -1,5 +1,7 @@
 package com.kronos.netdata.Domain;
 
+import java.util.Objects;
+
 /**
  * Created by marcos.guerra on 10/05/2019.
  */
@@ -40,5 +42,20 @@ public class PaqueteInternet {
     }
 
     public PaqueteInternet() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PaqueteInternet)) return false;
+        PaqueteInternet that = (PaqueteInternet) o;
+        return getId() == that.getId() &&
+                getPaquete().equals(that.getPaquete()) &&
+                getBono().equals(that.getBono());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getPaquete(), getBono());
     }
 }
