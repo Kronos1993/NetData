@@ -21,16 +21,16 @@
     <!-- Strings related to internet -->
     <string name="confirm_paquete_dialog">Confirmar Compra:</string>
     <string name="confirm_paquete_dialog_body_part1">Usted está a punto de comprar %1$s.</string>
-    <string name="confirm_paquete_dialog_body_part2"> Se le descontarán %1$d cuc de su saldo.</string>
+    <string name="confirm_paquete_dialog_body_part2"> Se le descontarán %1$d cup de su saldo.</string>
     <string name="confirm_bolsa_dialog_body_part1">Usted está a punto de comprar una %1$s.</string>
 
     <string name="confirm_tarifa_consumo_dialog">Confirmar:</string>
     <string name="confirm_tarifa_consumo_dialog_body_part">Recuerde que se le descontará saldo de su cuenta al navegar por internet. Continuar?</string>
 
     <string name="pqt_descripcion1">Con un bono de %1$s solo para LTE.</string>
-    <string name="pqt_descripcion2">Precio %1$d cuc.</string>
-    <string name="pqt_descripcion_no_bono">Navegue por internet a un precio de %1$d cuc.</string>
-    <string name="pqt_diario_descripcion">Para gastar en 24 horas. Precio %1$d cuc.</string>
+    <string name="pqt_descripcion2">Precio %1$d cup.</string>
+    <string name="pqt_descripcion_no_bono">Navegue por internet a un precio de %1$d cup.</string>
+    <string name="pqt_diario_descripcion">Para gastar en 24 horas. Precio %1$d cup.</string>
 
     <string name="paquete_consultar">Consultar Paquete</string>
     <string name="paquete_nacional">Bonos</string>
@@ -52,10 +52,10 @@
     <string name="select">Seleccionar</string>
     <string name="consult">Consultar</string>
 
-    <string name="total_cuc">TOTAL GASTADO: %1$d CUC</string>
+    <string name="total_cuc">TOTAL GASTADO: %1$d CUP</string>
     <string name="total_paquetes_comprados">PAQUETES COMPRADOS: %1$d</string>
     <string name="promedio_paquetes_mensuales">PROMEDIO COMPRAS MENSUALES: %1$d</string>
-    <string name="promedio_cuc_mensuales">PROMEDIO CUC MENSUALES: %1$d CUC</string>
+    <string name="promedio_cuc_mensuales">PROMEDIO CUP MENSUALES: %1$d CUP</string>
     <string name="duracion_ultimo_paquete">ULTIMO PAQUETE HACE: %1$d DIAS</string>
 
     <!-- Strings related to settings -->
