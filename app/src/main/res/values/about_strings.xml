@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="about_us">Acerca de</string>
+    <string name="about_telegram">Únete a nuestro canal de Telegram</string>
+
     <!--String related to AboutPage-->
     <string name="about_page_description" translatable="true">NetData \n¡La manera más facil de comprar tus datos!</string>
 

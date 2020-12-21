@@ -1,12 +1,8 @@
 package com.kronos.netdata.Activities;
 
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -16,8 +12,6 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import com.kronos.netdata.R;
 import com.kronos.netdata.Util.GeneralUtility;
-import com.kronos.netdata.Widget.NetDataWidgetProvider;
-import com.kronos.netdata.Widget.NetDataWidgetService;
 
 public class SettingsActivity extends AppCompatActivity {
 

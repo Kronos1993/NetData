@@ -17,7 +17,22 @@
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>
         <item name="android:itemTextAppearance">@style/menuItem</item>
+        <item name="android:windowAnimationStyle">@style/ActivityAnimation</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetRoundCorners</item>
+        <item name="bottomSheetStyle">@style/BottomSheetRoundCorners</item>
+    </style>
+    
+    <style name="ActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
 
+    <style name="BottomSheetRoundCorners" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="cornerSize">@dimen/padding_50</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
     </style>
 
     <style name="Widget.Custom.NavigationView" parent="Widget.Design.NavigationView">

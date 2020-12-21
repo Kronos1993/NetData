@@ -16,6 +16,11 @@
     <!--dialog button-->
     <color name="colorDialogButton">#90caf9</color>
 
+    <color name="colorGradientConfirmDialogStart">#202020</color>
+    <color name="colorGradientConfirmDialogEnd">#707070</color>
+    <color name="colorGradientConfirmDialogBorder">#707070</color>
+
+    <color name="credit_card">#A5D6A7</color>
 
     <!--icono del header-->
     <color name="globe">#80DEEA</color>
@@ -35,20 +40,6 @@
     <color name="handShadow">#F7BB8F</color>
     <color name="camisa">#80DEEA</color>
     <color name="boton">#101010</color>
-
-    <!-- General -->
-    <color name="about_background_color">#101010</color>
-    <color name="about_item_icon_color">#fff</color>
-
-    <!-- Social -->
-    <color name="about_facebook_color">#90caf9</color>
-    <color name="about_whatsapp_color">#a5d6a7</color>
-    <color name="about_twitter_color">#81d4fa</color>
-    <color name="about_instagram_color">#80deea</color>
-    <color name="about_play_store_color">#80cbc4</color>
-    <color name="about_youtube_color">#ef9a9a</color>
-    <color name="about_github_color">#eeeeee</color>
-    <color name="telegram_color">#90CAF9</color>
 
     <color name="colorBlack">#FFF</color>
 

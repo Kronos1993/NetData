@@ -21,7 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.widget.TextViewCompat;
@@ -233,9 +232,9 @@ public class AboutPage {
     public AboutPage addTelegram(String id, String title) {
         Element telegramElement = new Element();
         telegramElement.setTitle(title);
-        telegramElement.setIconDrawable(R.drawable.ic_telegram);
-        telegramElement.setIconTint(R.color.telegram_color);
-        telegramElement.setIconNightTint(R.color.telegram_color);
+        telegramElement.setIconDrawable(R.drawable.about_icon_telegram);
+        telegramElement.setIconTint(R.color.about_telegram_color);
+        telegramElement.setIconNightTint(R.color.about_telegram_color);
         telegramElement.setValue(id);
 
         Intent intent = new Intent();

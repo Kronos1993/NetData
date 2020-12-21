@@ -44,6 +44,8 @@ public class DialogWidgetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialog_widget);
 
+        GeneralUtility.setTheme(PreferenceManager.getDefaultSharedPreferences(getBaseContext()));
+
         paqueteInternet = GeneralUtility.getPaqueteById(PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("widget_paquete","8"));
         String body_text = String.format(context.getString(R.string.confirm_paquete_dialog_body_part1),paqueteInternet.getPaquete())+String.format(context.getString(R.string.confirm_paquete_dialog_body_part2),paqueteInternet.getId());
 
@@ -115,7 +117,7 @@ public class DialogWidgetActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        goToMain();
+        //super.onBackPressed();
+        finish();
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General -->
+    <color name="about_background_color">#101010</color>
+    <color name="about_item_icon_color">#fff</color>
+
+    <!-- Social -->
+    <color name="about_facebook_color">#90caf9</color>
+    <color name="about_whatsapp_color">#a5d6a7</color>
+    <color name="about_twitter_color">#81d4fa</color>
+    <color name="about_instagram_color">#80deea</color>
+    <color name="about_play_store_color">#80cbc4</color>
+    <color name="about_youtube_color">#ef9a9a</color>
+    <color name="about_github_color">#eeeeee</color>
+    <color name="about_telegram_color">#90CAF9</color>
+
+</resources>

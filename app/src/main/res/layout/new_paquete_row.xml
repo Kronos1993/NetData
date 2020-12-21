@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardCornerRadius="@dimen/cardview_default_radius"
+    android:clickable="true"
     android:elevation="@dimen/cardview_default_elevation"
+    android:foreground="?selectableItemBackground"
     android:padding="@dimen/cardview_compat_inset_shadow"
     app:cardBackgroundColor="?attr/CardViewColor"
-    android:foreground="?selectableItemBackground"
-    android:clickable="true">
+    app:cardCornerRadius="@dimen/cardview_default_radius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,8 +24,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:text="precio paquete"
-            android:textSize="@dimen/text_20"
             android:textColor="?attr/textColorBlack"
+            android:textSize="@dimen/text_20"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -38,8 +37,8 @@
             android:layout_below="@+id/layout_free_webs"
             android:layout_centerHorizontal="true"
             android:text="@string/paquete_descripcion"
-            android:textSize="@dimen/text_15"
             android:textColor="?attr/textColorBlack"
+            android:textSize="@dimen/text_15"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_free_webs" />

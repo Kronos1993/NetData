@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:id="@+id/fragment_chart_history"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Activities.Fragments.ChartHistoryFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/historyLayoutData"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:weightSum="2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewTotalPaquetes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTint="@color/icons"
+                    android:drawableLeft="@drawable/money_pay"
+                    android:drawablePadding="@dimen/dimens_5"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/total_paquetes_comprados"
+                    android:textColor="?attr/textColor"
+                    android:textSize="@dimen/text_15"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewTotalCUC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_buy_package"
+                    android:drawablePadding="@dimen/dimens_5"
+                    android:drawableTint="@color/icons"
+                    android:text="@string/total_cuc"
+                    android:textColor="?attr/textColor"
+                    android:textSize="@dimen/text_15"
+                    app:layout_constraintStart_toStartOf="@+id/textViewPromedioCucMensuales"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewPromedioCucMensuales" />
+
+                <TextView
+                    android:id="@+id/textViewPromedioPaquetesMensuales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_average_buy"
+                    android:drawablePadding="@dimen/dimens_5"
+                    android:drawableTint="@color/icons"
+                    android:text="@string/promedio_paquetes_mensuales"
+                    android:textColor="?attr/textColor"
+                    android:textSize="@dimen/text_15"
+                    app:layout_constraintStart_toStartOf="@+id/textViewTotalPaquetes"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTotalPaquetes" />
+
+                <TextView
+                    android:id="@+id/textViewPromedioCucMensuales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_average_buy_package"
+                    android:drawablePadding="@dimen/dimens_5"
+                    android:drawableTint="@color/icons"
+                    android:text="@string/promedio_cuc_mensuales"
+                    android:textColor="?attr/textColor"
+                    android:textSize="@dimen/text_15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textViewTotalPaquetes" />
+
+                <TextView
+                    android:id="@+id/textViewDuracionPaquete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_last_package_buy_date"
+                    android:drawablePadding="@dimen/dimens_5"
+                    android:drawableTint="@color/icons"
+                    android:text="@string/duracion_ultimo_paquete"
+                    android:textColor="?attr/textColor"
+                    android:textSize="@dimen/text_15"
+                    app:layout_constraintStart_toStartOf="@+id/textViewPromedioPaquetesMensuales"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewPromedioPaquetesMensuales" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/padding_10"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/CardViewColor"
+                    android:elevation="@dimen/cardview_default_elevation"
+                    android:padding="@dimen/cardview_compat_inset_shadow"
+                    app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/lineChartHistory"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"></com.github.mikephil.charting.charts.LineChart>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:background="?attr/CardViewColor"
+                    android:elevation="@dimen/cardview_default_elevation"
+                    android:padding="@dimen/cardview_compat_inset_shadow"
+                    app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barChartPackage"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"></com.github.mikephil.charting.charts.BarChart>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:background="?attr/CardViewColor"
+                    android:elevation="@dimen/cardview_default_elevation"
+                    android:padding="@dimen/cardview_compat_inset_shadow"
+                    app:cardCornerRadius="@dimen/cardview_default_radius">
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pieChartPercentage"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"></com.github.mikephil.charting.charts.PieChart>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
